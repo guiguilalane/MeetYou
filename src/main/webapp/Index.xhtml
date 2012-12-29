@@ -43,110 +43,7 @@
 
 								<title>I wish to meet you</title>
     </h:head>
-<!--    <h:body onload="geolocalisation()">
-								<div id="bloc_page">
-												<header>
-																<img src="images/banniere.png" id="titreIwishtoomeetyou"/>
-												</header>
-												<fieldset>
-																<legend> Moi </legend>
-																<input type="radio" name="depart" value="positionActuelle" checked="checked" /> Position actuelle
-																<input type="radio" name="depart" value="adresse"/> Adresse
-																<input type="submit" value="OK" name="lancer" />
-												</fieldset>
-												<fieldset>
-																<legend> Mes ami(e)s </legend>
- 															<f:view> 
-																				<h:form id="en">
-
-																										<div id="dialog-form" title="Ajouter un ami(e)">
-																														<p class="validateTips">All form fields are required.</p>
-																														<form>
-																																						<label for="nom">Nom</label>
-																																						<input type="text" name="nom" id="nom" class="text ui-widget-content ui-corner-all" /> <br/>
-																																						<label for="prenom">Prénom</label>
-																																						<input type="text" name="prenom" id="prenom" value="" class="text ui-widget-content ui-corner-all" />
-																														</form>
-																										</div>
-																										<button id="create-user">Ajouter un ami(e)</button>
-																									<h:commandButton value="Ajouter un ami(e)" action="index" /> 
-																								<div id="tableAmi">
-																												<h:dataTable value="#{TabAmiBean.tab}" var="triple" >
-																																<h:column>
-																																				<h:panelGroup id ="allcheckboxes" rendered="${triple.a != null}">
-                                        <h:selectManyCheckbox id ="items"/>
-																																								<fieldset>
-																																												<legend>
-                                                <t:checkbox for="items" index="0">
-                                                    <a4j:ajax event="onClick" onbeforesubmit="alert('#{triple.a.nom}');" />
-                                                </t:checkbox>
-																																																<h:outputText value="#{triple.a.nom} #{triple.a.prenom}" />
-																																												</legend>
-																																								</fieldset>
-																																				</h:panelGroup>
-																																</h:column>		
-																																<h:column>
-																																				<h:panelGroup rendered="${triple.b != null}">
-																																								<fieldset>
-																																												<legend> <input type="checkbox" name="select" value="ON" /> 
-																																																<h:outputText value="#{triple.b.nom} #{triple.b.prenom}" />
-																																												</legend>
-																																								</fieldset>
-																																				</h:panelGroup>
-																																</h:column>		
-																																<h:column>
-																																				<h:panelGroup rendered="${triple.c != null}">
-																																								<fieldset>
-																																												<legend> <input type="checkbox" name="select" value="ON" /> 
-																																																<h:outputText value="#{triple.c.nom} #{triple.c.prenom}" />
-																																												</legend>
-																																								</fieldset>
-																																				</h:panelGroup>
-																																</h:column>		
-																												</h:dataTable>
-																								</div>
-																				</h:form>
-																</f:view>
-												</fieldset>
-
-												 Bouton Rechercher 
-												<div id="Recherche">
-																<h:button id="RechercherBouton" value="Rechercher"/>
-												</div>
-
-												 Affichage de la carte 
-												<fieldset id="MapInfo">
-																<legend> La carte </legend>
-																<div id="OpenStreetMap"></div>
-												</fieldset>
-
-												 Affichage des résultats 
-												<fieldset id="ParcFound">
-																<legend> Les parcs </legend>
-																<h:dataTable value="#{ResultBean.getKeyAsList()}" var="numberParc">
-																				<h:column>
-																								<h:outputText value="#{ResultBean.tab.get(numberParc).libelle}"/>
-																				</h:column>
-																				<h:column>
-																								<button id="openerInfoParc#{numberParc}">Afficher</button>
-																				</h:column>
-																</h:dataTable>
-												</fieldset>
-								</div>
-
-								 Boites de dialogues 
-								<h:dataTable value="#{ResultBean.getKeyAsList()}" var="numberParc" >
-												<h:column>
-																<div id="InfoParc#{numberParc}" title="#{ResultBean.tab.get(numberParc).libelle}">
-																				<fieldset>
-																								<legend> Informations </legend>
-																								<h:outputText value="#{ResultBean.tab.get(numberParc).toString()}" escape="false"/>
-																				</fieldset>
-																</div>
-												</h:column>
-								</h:dataTable>
-    </h:body>-->
-<h:body onload="geolocalisation()">
+				<h:body onload="geolocalisation()">
 								<div id="bloc_page">
 												<header>
 																<img src="images/banniere.png" id="titreIwishtoomeetyou"/>
@@ -183,9 +80,7 @@
 																																								<h:panelGroup rendered="${triple.a != null}">
 																																												<fieldset>
 																																																<legend>
-																																																				<h:selectBooleanCheckbox label="#{triple.a.id}" disabled="#{triple.a.notActif}" >
-																																																								<!--<f:ajax event="click" listener="#{TabPositionDepart.gestionAmi(triple.a)}" onevent="alert('#{triple.a.nom}')" render=":essai"/>--> 
-                                                        <!--<f:ajax event="click" listener="#{TabPositionDepart.gestionAmi(triple.a)}" onevent="alert('#{triple.a.nom}')" />-->
+																																																				<h:selectBooleanCheckbox label="#{triple.a.id}" disabled="#{triple.a.notActif}">
                                                         <f:ajax event="click" listener="#{TabPositionDepart.gestionAmi(triple.a)}" render=":essai"/>
 
                                                     </h:selectBooleanCheckbox>
@@ -198,6 +93,7 @@
 																																												<fieldset>
 																																																<legend>
 																																																				<h:selectBooleanCheckbox label="#{triple.b.id}" disabled="#{triple.b.notActif}">
+																																																								<f:ajax event="click" listener="#{TabPositionDepart.gestionAmi(triple.b)}" render=":essai"/>
 																																																				</h:selectBooleanCheckbox>
 																																																				<h:outputText value="#{triple.b.nom} #{triple.b.prenom}" />
 																																																</legend>
@@ -209,6 +105,7 @@
 																																												<fieldset>
 																																																<legend>
 																																																				<h:selectBooleanCheckbox label="#{triple.c.id}" disabled="#{triple.c.notActif}">
+																																																								<f:ajax event="click" listener="#{TabPositionDepart.gestionAmi(triple.c)}" render=":essai"/>
 																																																				</h:selectBooleanCheckbox>
 																																																				<h:outputText value="#{triple.c.nom} #{triple.c.prenom}" />
 																																																</legend>

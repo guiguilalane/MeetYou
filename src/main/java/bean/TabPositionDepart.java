@@ -6,6 +6,7 @@ package bean;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -16,9 +17,10 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean(name = "TabPositionDepart")
 @SessionScoped
 public class TabPositionDepart implements java.io.Serializable {
-				
-//				private HashMap<Boolean, AmiBean> map = new HashMap<Boolean, AmiBean>();
+
 				private ArrayList<AmiBean> amiSelect = new ArrayList<AmiBean>();
+				private float posRencX = 0;
+				private float posRencY = 0;
 
 				/**
 				 * Creates a new instance of TabPositionDepart
@@ -26,13 +28,11 @@ public class TabPositionDepart implements java.io.Serializable {
 				public TabPositionDepart() {
 				}
 
-				
-				public void gestionAmi(AmiBean a){
+				public void gestionAmi(AmiBean a) {
 								System.out.println("Je passe");
-								if (amiSelect.contains(a)){
+								if (amiSelect.contains(a)) {
 												amiSelect.remove(a);
-								}
-								else{
+								} else {
 												amiSelect.add(a);
 								}
 				}
@@ -51,4 +51,49 @@ public class TabPositionDepart implements java.io.Serializable {
 								this.amiSelect = amiSelect;
 				}
 
+				public void calculPointRencontre() {
+								setPosRencX(0);
+								setPosRencY(0);
+								Iterator<AmiBean> amiIter = amiSelect.iterator();
+								AmiBean ami;
+								// Somme des latitudes et longitudes de tous les amis sélectionnés afin de créer le point de rencontre
+								while (amiIter.hasNext()) {
+												ami = amiIter.next();
+												setPosRencX(getPosRencX() + ami.getLat());
+												setPosRencY(getPosRencY() + ami.getLongi());
+								}
+								
+								//Coordonnées du point de rencontre
+								int nbCoord = amiSelect.size();
+								setPosRencX(getPosRencX() / nbCoord);
+								setPosRencY(getPosRencY() / nbCoord);
+				}
+
+				/**
+				 * @return the posRencX
+				 */
+				public float getPosRencX() {
+								return posRencX;
+				}
+
+				/**
+				 * @param posRencX the posRencX to set
+				 */
+				public void setPosRencX(float posRencX) {
+								this.posRencX = posRencX;
+				}
+
+				/**
+				 * @return the posRencY
+				 */
+				public float getPosRencY() {
+								return posRencY;
+				}
+
+				/**
+				 * @param posRencY the posRencY to set
+				 */
+				public void setPosRencY(float posRencY) {
+								this.posRencY = posRencY;
+				}
 }

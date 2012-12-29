@@ -48,7 +48,12 @@ public class AmiBean implements java.io.Serializable {
 								this.prenom = p;
         this.lat = lat;
 								this.longi = longi;
-        this.notActif=(lat == 0 && longi == 0);
+								if (lat == 0 && longi == 0){
+												this.notActif = true;
+								}
+								else{
+												this.notActif = false;
+								}
 							//	this.isSelected = isSelected;
 				}
 
