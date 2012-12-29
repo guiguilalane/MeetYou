@@ -1,0 +1,271 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+						xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:a4j="http://richfaces.org/a4j">
+    <h:head>
+								<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+								<link rel="icon" type="image/png" href="images/favicon.png"/>
+								<link type="text/css" rel="stylesheet" href="css/iwishtomeetyou.css" />
+
+								<!-- Commentaire qui n'est lu que par Internet Explorer. Le script permet
+        l'affichage correcte des balises de HTML5 -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <!-- présentation des différentes nouvelles balise HTML5 -->
+        <!-- <header></header> : utilisé pour l'entête de page -->
+        <!-- <footer></footer> : utilisé pour le pied de page -->
+        <!-- <nav></nav> : utilis pour les liens principaux de navigation
+        (souvent apparenté à un menu horizontal) -->
+        <!-- <section></section> : utilisé pour reprsenter une section de page -->
+        <!-- <aside></aside> : informations complementaires du document visualisé
+        (affiché souvent sur la partie droite de la page)-->
+        <!-- <article></article> : article indépendant qui peut être cité sur
+        d'autre page.-->
+        <!-- complément d'information sur la page deu site du zéro : http://www.siteduzero.com/tutoriel-3-561847-structurer-sa-page.html -->
+
+								<!-- Scripts JQuerry -->
+								<link rel="stylesheet" href="script/jquery-ui-1.9.2.custom/css/south-street/jquery-ui-1.9.2.custom.css" />
+								<script src="script/jquery-ui-1.9.2.custom/js/jquery-1.8.3.js"></script>
+								<script src="/resources/demos/external/jquery.bgiframe-2.1.2.js"></script>
+								<script src="script/jquery-ui-1.9.2.custom/js/jquery-ui-1.9.2.custom.js"></script>
+
+								<script src="script/script.js" type="text/javascript"></script>
+
+								<!-- Ajout du script MapStraction sur le type de carte OpenstreetMap -->
+        <script type="text/javascript" charset="utf-8" src="script/MapStraction/mxn.js?(openlayers)"></script>
+        <!-- Ajout de openStreetMap à la page web -->
+        <script type="text/javascript" charset="utf-8" src="script/OpenLayers/OpenLayers.js"></script>
+        <script type="text/javascript" charset="utf-8" src="script/XMLHttpRequest.js"></script>	
+
+								<title>I wish to meet you</title>
+    </h:head>
+<!--    <h:body onload="geolocalisation()">
+								<div id="bloc_page">
+												<header>
+																<img src="images/banniere.png" id="titreIwishtoomeetyou"/>
+												</header>
+												<fieldset>
+																<legend> Moi </legend>
+																<input type="radio" name="depart" value="positionActuelle" checked="checked" /> Position actuelle
+																<input type="radio" name="depart" value="adresse"/> Adresse
+																<input type="submit" value="OK" name="lancer" />
+												</fieldset>
+												<fieldset>
+																<legend> Mes ami(e)s </legend>
+ 															<f:view> 
+																				<h:form id="en">
+
+																										<div id="dialog-form" title="Ajouter un ami(e)">
+																														<p class="validateTips">All form fields are required.</p>
+																														<form>
+																																						<label for="nom">Nom</label>
+																																						<input type="text" name="nom" id="nom" class="text ui-widget-content ui-corner-all" /> <br/>
+																																						<label for="prenom">Prénom</label>
+																																						<input type="text" name="prenom" id="prenom" value="" class="text ui-widget-content ui-corner-all" />
+																														</form>
+																										</div>
+																										<button id="create-user">Ajouter un ami(e)</button>
+																									<h:commandButton value="Ajouter un ami(e)" action="index" /> 
+																								<div id="tableAmi">
+																												<h:dataTable value="#{TabAmiBean.tab}" var="triple" >
+																																<h:column>
+																																				<h:panelGroup id ="allcheckboxes" rendered="${triple.a != null}">
+                                        <h:selectManyCheckbox id ="items"/>
+																																								<fieldset>
+																																												<legend>
+                                                <t:checkbox for="items" index="0">
+                                                    <a4j:ajax event="onClick" onbeforesubmit="alert('#{triple.a.nom}');" />
+                                                </t:checkbox>
+																																																<h:outputText value="#{triple.a.nom} #{triple.a.prenom}" />
+																																												</legend>
+																																								</fieldset>
+																																				</h:panelGroup>
+																																</h:column>		
+																																<h:column>
+																																				<h:panelGroup rendered="${triple.b != null}">
+																																								<fieldset>
+																																												<legend> <input type="checkbox" name="select" value="ON" /> 
+																																																<h:outputText value="#{triple.b.nom} #{triple.b.prenom}" />
+																																												</legend>
+																																								</fieldset>
+																																				</h:panelGroup>
+																																</h:column>		
+																																<h:column>
+																																				<h:panelGroup rendered="${triple.c != null}">
+																																								<fieldset>
+																																												<legend> <input type="checkbox" name="select" value="ON" /> 
+																																																<h:outputText value="#{triple.c.nom} #{triple.c.prenom}" />
+																																												</legend>
+																																								</fieldset>
+																																				</h:panelGroup>
+																																</h:column>		
+																												</h:dataTable>
+																								</div>
+																				</h:form>
+																</f:view>
+												</fieldset>
+
+												 Bouton Rechercher 
+												<div id="Recherche">
+																<h:button id="RechercherBouton" value="Rechercher"/>
+												</div>
+
+												 Affichage de la carte 
+												<fieldset id="MapInfo">
+																<legend> La carte </legend>
+																<div id="OpenStreetMap"></div>
+												</fieldset>
+
+												 Affichage des résultats 
+												<fieldset id="ParcFound">
+																<legend> Les parcs </legend>
+																<h:dataTable value="#{ResultBean.getKeyAsList()}" var="numberParc">
+																				<h:column>
+																								<h:outputText value="#{ResultBean.tab.get(numberParc).libelle}"/>
+																				</h:column>
+																				<h:column>
+																								<button id="openerInfoParc#{numberParc}">Afficher</button>
+																				</h:column>
+																</h:dataTable>
+												</fieldset>
+								</div>
+
+								 Boites de dialogues 
+								<h:dataTable value="#{ResultBean.getKeyAsList()}" var="numberParc" >
+												<h:column>
+																<div id="InfoParc#{numberParc}" title="#{ResultBean.tab.get(numberParc).libelle}">
+																				<fieldset>
+																								<legend> Informations </legend>
+																								<h:outputText value="#{ResultBean.tab.get(numberParc).toString()}" escape="false"/>
+																				</fieldset>
+																</div>
+												</h:column>
+								</h:dataTable>
+    </h:body>-->
+<h:body onload="geolocalisation()">
+								<div id="bloc_page">
+												<header>
+																<img src="images/banniere.png" id="titreIwishtoomeetyou"/>
+												</header>
+												<fieldset>
+																<legend> Moi </legend>
+																<input type="radio" name="depart" value="positionActuelle" checked="checked" /> Position actuelle
+																<!-- <input type="radio" name="depart" value="adresse"/> Adresse
+																<input type="submit" value="OK" name="lancer" /> -->
+												</fieldset>
+
+												<fieldset>
+																<legend> Mes ami(e)s </legend>
+																<f:view> 
+																				<h:form id="en">
+																								<!--		<div id="dialog-form" title="Ajouter un ami(e)">
+																														<p class="validateTips">All form fields are required.</p>
+																														<form>
+																																						<label for="nom">Nom</label>
+																																						<input type="text" name="nom" id="nom" class="text ui-widget-content ui-corner-all" /> <br/>
+																																						<label for="prenom">Prénom</label>
+																																						<input type="text" name="prenom" id="prenom" value="" class="text ui-widget-content ui-corner-all" />
+																														</form>
+																										</div>
+																										<button id="create-user">Ajouter un ami(e)</button>-->
+																								<!--	<h:commandButton value="Ajouter un ami(e)" action="index" /> -->
+
+
+																								<div id="tableAmi">
+
+																												<h:form>
+																																<h:dataTable value="#{TabAmiBean.tab}" var="triple">
+																																				<h:column>
+																																								<h:panelGroup rendered="${triple.a != null}">
+																																												<fieldset>
+																																																<legend>
+																																																				<h:selectBooleanCheckbox label="#{triple.a.id}" disabled="#{triple.a.notActif}" >
+																																																								<!--<f:ajax event="click" listener="#{TabPositionDepart.gestionAmi(triple.a)}" onevent="alert('#{triple.a.nom}')" render=":essai"/>--> 
+                                                        <!--<f:ajax event="click" listener="#{TabPositionDepart.gestionAmi(triple.a)}" onevent="alert('#{triple.a.nom}')" />-->
+                                                        <f:ajax event="click" listener="#{TabPositionDepart.gestionAmi(triple.a)}" render=":essai"/>
+
+                                                    </h:selectBooleanCheckbox>
+																																																				<h:outputText value="#{triple.a.nom} #{triple.a.prenom}" />
+																																																</legend>
+																																												</fieldset>																																								</h:panelGroup>
+																																				</h:column>		
+																																				<h:column>
+																																								<h:panelGroup rendered="${triple.b != null}">
+																																												<fieldset>
+																																																<legend>
+																																																				<h:selectBooleanCheckbox label="#{triple.b.id}" disabled="#{triple.b.notActif}">
+																																																				</h:selectBooleanCheckbox>
+																																																				<h:outputText value="#{triple.b.nom} #{triple.b.prenom}" />
+																																																</legend>
+																																												</fieldset>
+																																								</h:panelGroup>
+																																				</h:column>		
+																																				<h:column>
+																																								<h:panelGroup rendered="${triple.c != null}">
+																																												<fieldset>
+																																																<legend>
+																																																				<h:selectBooleanCheckbox label="#{triple.c.id}" disabled="#{triple.c.notActif}">
+																																																				</h:selectBooleanCheckbox>
+																																																				<h:outputText value="#{triple.c.nom} #{triple.c.prenom}" />
+																																																</legend>
+																																												</fieldset>
+																																								</h:panelGroup>
+																																				</h:column>
+																																</h:dataTable>
+																												</h:form>
+																								</div>
+																				</h:form>
+																</f:view>
+												</fieldset>
+
+												<!-- Bouton Rechercher -->
+												<div id="Recherche">
+																<h:button id="RechercherBouton" value="Rechercher"/>
+												</div>
+
+												<!-- Affichage de la carte -->
+												<fieldset id="MapInfo">
+																<legend> La carte </legend>
+																<div id="OpenStreetMap"></div>
+												</fieldset>
+
+												<!-- Affichage des résultats -->
+												<fieldset id="ParcFound">
+																<legend> Les parcs </legend>
+																<h:dataTable value="#{ResultBean.getKeyAsList()}" var="numberParc">
+																				<h:column>
+																								<h:outputText value="#{ResultBean.tab.get(numberParc).libelle}"/>
+																				</h:column>
+																				<h:column>
+																								<button id="openerInfoParc#{numberParc}">Afficher</button>
+																				</h:column>
+																</h:dataTable>
+												</fieldset>
+								</div>
+
+								<!-- Boites de dialogues -->
+								<h:dataTable value="#{ResultBean.getKeyAsList()}" var="numberParc" >
+												<h:column>
+																<div id="InfoParc#{numberParc}" title="#{ResultBean.tab.get(numberParc).libelle}">
+																				<fieldset>
+																								<legend> Informations </legend>
+																								<h:outputText value="#{ResultBean.tab.get(numberParc).toString()}" escape="false"/>
+																				</fieldset>
+																</div>
+												</h:column>
+								</h:dataTable>
+
+								<!-- Affichage des ami(e)s cochées -->
+								<h:form id="essai">
+												<h:dataTable id="essaiAmi" value="#{TabPositionDepart.amiSelect}" var="amisel" >
+																<h:column>
+																				<h:outputText value="#{amisel.nom}"/>
+																</h:column>
+												</h:dataTable>
+								</h:form>
+    </h:body>
+</html>

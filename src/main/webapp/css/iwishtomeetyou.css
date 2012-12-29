@@ -1,0 +1,68 @@
+@font-face {
+    font-family: 'QikkiRegRegular';
+    src: url('fonts/Qarmic_sans_Abridged-webfont.eot');
+    src: url('fonts/Qarmic_sans_Abridged-webfont.eot?#iefix') format('embedded-opentype'),
+								url('fonts/Qarmic_sans_Abridged-webfont.woff') format('woff'),
+								url('fonts/Qarmic_sans_Abridged-webfont.ttf') format('truetype'),
+								url('fonts/Qarmic_sans_Abridged-webfont.svg#QikkiRegRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+body{
+    font-family: 'QikkiRegRegular', "Comic Sans MS", Arial, serif;
+    font-size: 0.9em;
+    background-image: url("images/fond.jpg");
+    background-position: top left;
+				/* position: relative;
+					margin: auto;
+					width: 1056px;*/
+}
+
+#bloc_page
+{
+    width: 1056px;
+    margin: auto;
+}
+
+#tableAmi
+{
+    height: 100px;
+    overflow: auto;
+}
+
+#titreIwishtoomeetyou {
+    border-radius: 20px;
+    border: 2px black solid;
+    box-shadow: 4px 4px 6px black;
+    text-align: center;
+    position:relative;
+				/* height: 167px;*/
+    width: 1056px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#Recherche{
+				padding-top: 1%;
+				text-align: center;
+}
+
+#MapInfo{
+				width: 60%;
+				float: left;
+}
+
+#ParcFound{
+    width: 35%;
+    float: right;
+}
+
+#OpenStreetMap
+{
+    width: 100%;
+    height: 400px;
+    /*border: 1px solid;*/
+}
