@@ -4,6 +4,7 @@
  */
 package persistance;
 
+import javaClass.ParcResult;
 import PMF.PMF;
 import bean.AmiBean;
 import bean.ParcBean;
@@ -41,7 +42,6 @@ public class ResultBeanPersist {
 												Iterator<ParcBean> parcIter = results.iterator();
 												ParcBean parcRes;
 												while (parcIter.hasNext()) {
-																System.out.println("hhhh");
 																parcRes = parcIter.next();
 																tabRes.getTab().put(new Integer(parcRes.getCode()), parcRes);
 												}

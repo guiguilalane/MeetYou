@@ -32,10 +32,10 @@ public class ParcBean extends DatePlace implements java.io.Serializable {
 				
 				@Persistent
 				private double latitude;
-				
+
 				@Persistent
 				private double longitude;
-				
+
 				@Persistent
 				private String acces_tan;
 				
@@ -114,22 +114,28 @@ public class ParcBean extends DatePlace implements java.io.Serializable {
 								this.commentaires = com;
 				}
 				
-//				public ParcBean(ParcResult p) {
-//								this.code = p.getCode();
-//								this.libelle = p.getLibelle();
-//								this.accesTan = p.getAccesTan();
-//								this.jeux = p.getJeux();
-//								this.mobilierPiquenique = p.getMobilierPiquenique();
-//								this.pateaugeoire = p.getPateaugeoire();
-//								this.pointEau = p.getPointEau();
-//								this.sanitaire = p.getSanitaire();
-//								this.abris = p.getAbris();
-//								this.accesHand = p.getAccesHand();
-//								this.collectionVegetale = p.getCollectionVegetale();
-//								this.chienInterdit = p.getChienInterdit();
-//								this.jardinClos = p.getJardinClos();
-//								this.commentaires = p.getCommentaires();
-//				}
+			
+				public ParcBean(String[] d) {
+								this.code = Integer.parseInt(d[0]);
+								this.libelle = d[1];
+								this.adresse_postale = d[2];
+								this.latitude = Double.parseDouble(d[3]);
+								this.longitude = Double.parseDouble(d[4]);
+								this.acces_tan = d[5];
+								this.jeux = d[6];
+								this.mobilier_pique_nique = d[7];
+								this.pataugeoire = d[8];
+								this.point_d_eau = d[9];
+								this.sanitaires = d[10];
+								this.abris = d[11];
+								this.acces_handicap_y_compris_sanitai = d[12];
+								this.collection_vegetale = d[13];
+								this.gardien = d[14];
+								this.surface_hors_batiments = Double.parseDouble(d[15]);
+								this.chien_interdit_en_laisse = d[16];
+								this.jardin_clos = d[17];
+								this.commentaires = d[18];
+				}
 				
 				public String toString(){
 								return ("Accès TAN: "+this.getAcces_tan()+
@@ -194,7 +200,7 @@ public class ParcBean extends DatePlace implements java.io.Serializable {
     public double getLatitude() {
         return latitude;
     }
-
+    
     /**
      * @param latitude the latitude to set
      */

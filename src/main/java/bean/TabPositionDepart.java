@@ -18,8 +18,8 @@ import javax.faces.bean.SessionScoped;
 public class TabPositionDepart implements java.io.Serializable {
 
 				private ArrayList<AmiBean> amiSelect = new ArrayList<AmiBean>();
-				private float posRencX = 0;
-				private float posRencY = 0;
+				private double posRencX = 0;
+				private double posRencY = 0;
 
 				/**
 				 * Creates a new instance of TabPositionDepart
@@ -74,28 +74,28 @@ public class TabPositionDepart implements java.io.Serializable {
 				/**
 				 * @return the posRencX
 				 */
-				public float getPosRencX() {
+				public double getPosRencX() {
 								return posRencX;
 				}
 
 				/**
 				 * @param posRencX the posRencX to set
 				 */
-				public void setPosRencX(float posRencX) {
+				public void setPosRencX(double posRencX) {
 								this.posRencX = posRencX;
 				}
 
 				/**
 				 * @return the posRencY
 				 */
-				public float getPosRencY() {
+				public double getPosRencY() {
 								return posRencY;
 				}
 
 				/**
 				 * @param posRencY the posRencY to set
 				 */
-				public void setPosRencY(float posRencY) {
+				public void setPosRencY(double posRencY) {
 								this.posRencY = posRencY;
 				}
 				

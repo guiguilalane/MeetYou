@@ -31,10 +31,10 @@ public class AmiBean implements java.io.Serializable {
 				private String prenom;
     
     @Persistent
-    private float lat;
+    private double lat;
     
     @Persistent
-				private float longi;
+				private double longi;
     
     @Persistent
 				private Boolean notActif;
@@ -48,7 +48,7 @@ public class AmiBean implements java.io.Serializable {
 				public AmiBean() {
 				}
 
-				public AmiBean(String token, String n, String p, float lat, float longi) {
+				public AmiBean(String token, String n, String p, double lat, double longi) {
 								this.token = token;
 								this.nom = n;
 								this.prenom = p;
@@ -81,28 +81,28 @@ public class AmiBean implements java.io.Serializable {
     /**
 				 * @return the lat
 				 */
-				public float getLat() {
+				public double getLat() {
 								return lat;
 				}
 
 				/**
 				 * @param lat the lat to set
 				 */
-				public void setLat(float lat) {
+				public void setLat(double lat) {
 								this.lat = lat;
 				}
 
 				/**
 				 * @return the longi
 				 */
-				public float getLongi() {
+				public double getLongi() {
 								return longi;
 				}
 
 				/**
 				 * @param longi the longi to set
 				 */
-				public void setLongi(float longi) {
+				public void setLongi(double longi) {
 								this.longi = longi;
 				}
     
