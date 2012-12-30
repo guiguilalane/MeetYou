@@ -27,7 +27,6 @@ public class AmiBean implements java.io.Serializable {
     @Persistent
 				private String nom;
     
-    @PrimaryKey
     @Persistent
 				private String prenom;
     

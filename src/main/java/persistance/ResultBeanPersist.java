@@ -8,10 +8,10 @@ import PMF.PMF;
 import bean.AmiBean;
 import bean.ParcBean;
 import bean.ResultBean;
-import javaClass.ParcResult;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Query;
@@ -35,15 +35,15 @@ public class ResultBeanPersist {
 												pm = pmf.getPersistenceManager();
 												tx = pm.currentTransaction();
 												tx.begin();
-												Query query = pm.newQuery("javax.jdo.query.SQL", "SELECT (6378 * ACOS(COS( 47.2248 * PI() / 180 ) * COS(Latitude * PI() / 180 ) * COS((Longitude * PI() / 180) - ( -1.59412 * PI() / 180 )) + SIN( 47.2248 * PI() / 180 ) * SIN(Latitude * PI() / 180 ))) as distance, Code, Libelle, adresse_postale, Latitude, Longitude, Acces_Tan, Jeux, Mobilier_pique_nique, Pataugeoire, Point_d_eau, Sanitaires, Abris, Acces_handicap_y_compris_sanitai, Collection_vegetale, Gardien, Chien_interdit_en_laisse, Jardin_clos, Surface_hors_batiments, Commentaire FROM EL_PARC ORDER BY distance LIMIT 5");
-												query.setClass(ParcResult.class);
-												ArrayList<ParcResult> results = (ArrayList<ParcResult>) query.execute();
-												Iterator<ParcResult> parcIter = results.iterator();
-												ParcResult parcRes;
+												Query query = pm.newQuery("javax.jdo.query.SQL", "SELECT Code, Libelle, adresse_postale, Latitude, Longitude, Acces_Tan, Jeux, Mobilier_pique_nique, Pataugeoire, Point_d_eau, Sanitaires, Abris, Acces_handicap_y_compris_sanitai, Collection_vegetale, Gardien, Chien_interdit_en_laisse, Jardin_clos, Surface_hors_batiments, Commentaires FROM (SELECT (6378 * ACOS(COS( 47.2248 * PI() / 180 ) * COS(Latitude * PI() / 180 ) * COS((Longitude * PI() / 180) - ( -1.59412 * PI() / 180 )) + SIN( 47.2248 * PI() / 180 ) * SIN(Latitude * PI() / 180 ))) as distance, Code, Libelle, adresse_postale, Latitude, Longitude, Acces_Tan, Jeux, Mobilier_pique_nique, Pataugeoire, Point_d_eau, Sanitaires, Abris, Acces_handicap_y_compris_sanitai, Collection_vegetale, Gardien, Chien_interdit_en_laisse, Jardin_clos, Surface_hors_batiments, Commentaires FROM PARCBEAN ORDER BY distance LIMIT 5) as T1");
+												query.setClass(ParcBean.class);
+												List<ParcBean> results = (List<ParcBean>) query.execute();
+												Iterator<ParcBean> parcIter = results.iterator();
+												ParcBean parcRes;
 												while (parcIter.hasNext()) {
 																System.out.println("hhhh");
 																parcRes = parcIter.next();
-																tabRes.getTab().put((Integer) parcRes.getCode(), new ParcBean(parcRes));
+																tabRes.getTab().put(new Integer(parcRes.getCode()), parcRes);
 												}
 												tx.commit();
 								} catch (Exception e) {
@@ -54,6 +54,5 @@ public class ResultBeanPersist {
 												}
 												pm.close();
 								}
-
 				}
 }

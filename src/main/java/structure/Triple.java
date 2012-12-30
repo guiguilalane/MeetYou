@@ -10,7 +10,7 @@ import bean.AmiBean;
  *
  * @author Nomyx
  */
-public class Triple<T, U, V> {
+public class Triple<T, U, V> implements java.io.Serializable {
 
 				T a;
 				U b;
