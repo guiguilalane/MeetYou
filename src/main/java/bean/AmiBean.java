@@ -36,6 +36,9 @@ public class AmiBean implements java.io.Serializable {
     
     @Persistent
 				private Boolean notActif;
+				
+				@Persistent
+				private Boolean isSelected = false;
 
 				/**
 				 * Creates a new instance of amiBean
@@ -54,7 +57,6 @@ public class AmiBean implements java.io.Serializable {
 								else{
 												this.notActif = false;
 								}
-							//	this.isSelected = isSelected;
 				}
 
 				public String getNom() {
@@ -113,5 +115,19 @@ public class AmiBean implements java.io.Serializable {
 				 */
 				public void setNotActif(Boolean actif) {
 								this.notActif = actif;
+				}
+
+				/**
+				 * @return the isSelected
+				 */
+				public Boolean getIsSelected() {
+								return isSelected;
+				}
+
+				/**
+				 * @param isSelected the isSelected to set
+				 */
+				public void setIsSelected(Boolean isSelected) {
+								this.isSelected = isSelected;
 				}
 }

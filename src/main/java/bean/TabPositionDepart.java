@@ -5,7 +5,6 @@
 package bean;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -29,11 +28,13 @@ public class TabPositionDepart implements java.io.Serializable {
 				}
 
 				public void gestionAmi(AmiBean a) {
-								System.out.println("Je passe");
 								if (amiSelect.contains(a)) {
 												amiSelect.remove(a);
+												a.setIsSelected(false);
 								} else {
 												amiSelect.add(a);
+												a.setIsSelected(true);
+												
 								}
 				}
 
@@ -56,6 +57,7 @@ public class TabPositionDepart implements java.io.Serializable {
 								setPosRencY(0);
 								Iterator<AmiBean> amiIter = amiSelect.iterator();
 								AmiBean ami;
+								// TODO: récupérer notre position ! est-ce qu'on la met obligatoirement dans le tabAmis ?
 								// Somme des latitudes et longitudes de tous les amis sélectionnés afin de créer le point de rencontre
 								while (amiIter.hasNext()) {
 												ami = amiIter.next();
@@ -95,5 +97,13 @@ public class TabPositionDepart implements java.io.Serializable {
 				 */
 				public void setPosRencY(float posRencY) {
 								this.posRencY = posRencY;
+				}
+				
+				public boolean estSelect(AmiBean a){
+								boolean res = false;
+								if (amiSelect.contains(a)) {
+												res = true;
+								}
+								return res;
 				}
 }

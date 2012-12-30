@@ -80,8 +80,8 @@
 																																								<h:panelGroup rendered="${triple.a != null}">
 																																												<fieldset>
 																																																<legend>
-																																																				<h:selectBooleanCheckbox label="#{triple.a.id}" disabled="#{triple.a.notActif}">
-                                                        <f:ajax event="click" listener="#{TabPositionDepart.gestionAmi(triple.a)}" render=":essai"/>
+																																																				<h:selectBooleanCheckbox label="#{triple.a.id}" disabled="#{triple.a.notActif}" value="#{triple.a.isSelected}">
+                                                        <f:ajax event="click" listener="#{ResultBean.gestionAmi(triple.a)}" render=":essai"/>
 
                                                     </h:selectBooleanCheckbox>
 																																																				<h:outputText value="#{triple.a.nom} #{triple.a.prenom}" />
@@ -92,8 +92,8 @@
 																																								<h:panelGroup rendered="${triple.b != null}">
 																																												<fieldset>
 																																																<legend>
-																																																				<h:selectBooleanCheckbox label="#{triple.b.id}" disabled="#{triple.b.notActif}">
-																																																								<f:ajax event="click" listener="#{TabPositionDepart.gestionAmi(triple.b)}" render=":essai"/>
+																																																				<h:selectBooleanCheckbox label="#{triple.b.id}" disabled="#{triple.b.notActif}" value="#{triple.b.isSelected}">
+																																																								<f:ajax event="click" listener="#{ResultBean.gestionAmi(triple.b)}" render=":essai"/>
 																																																				</h:selectBooleanCheckbox>
 																																																				<h:outputText value="#{triple.b.nom} #{triple.b.prenom}" />
 																																																</legend>
@@ -104,8 +104,8 @@
 																																								<h:panelGroup rendered="${triple.c != null}">
 																																												<fieldset>
 																																																<legend>
-																																																				<h:selectBooleanCheckbox label="#{triple.c.id}" disabled="#{triple.c.notActif}">
-																																																								<f:ajax event="click" listener="#{TabPositionDepart.gestionAmi(triple.c)}" render=":essai"/>
+																																																				<h:selectBooleanCheckbox label="#{triple.c.id}" disabled="#{triple.c.notActif}" value="#{triple.c.isSelected}">
+																																																								<f:ajax event="click" listener="#{ResultBean.gestionAmi(triple.c)}" render=":essai"/>
 																																																				</h:selectBooleanCheckbox>
 																																																				<h:outputText value="#{triple.c.nom} #{triple.c.prenom}" />
 																																																</legend>
@@ -121,7 +121,9 @@
 
 												<!-- Bouton Rechercher -->
 												<div id="Recherche">
-																<h:button id="RechercherBouton" value="Rechercher"/>
+																<h:form>
+																				<h:commandButton id="RechercherBouton" action="index" value="Rechercher" actionListener="#{ResultBean.calculPointRencontre()}"/>
+																</h:form>
 												</div>
 
 												<!-- Affichage de la carte -->
@@ -158,9 +160,11 @@
 
 								<!-- Affichage des ami(e)s cochées -->
 								<h:form id="essai">
-												<h:dataTable id="essaiAmi" value="#{TabPositionDepart.amiSelect}" var="amisel" >
+												<h:outputText value="#{ResultBean.posRencX} - "/>
+												<h:outputText value="#{ResultBean.posRencY}"/>
+												<h:dataTable id="essaiAmi" value="#{ResultBean.amiSelect}" var="amisel" >
 																<h:column>
-																				<h:outputText value="#{amisel.nom}"/>
+																				<h:outputText value="#{amisel.nom} #{amisel.prenom}"/>
 																</h:column>
 												</h:dataTable>
 								</h:form>
