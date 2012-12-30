@@ -32,10 +32,10 @@ public class ParcBean extends DatePlace implements java.io.Serializable {
 				private String adressePostale;
 				
 				@Persistent
-				private float lat;
+				private double lat;
 				
 				@Persistent
-				private float longi;
+				private double longi;
 				
 				@Persistent
 				private String accesTan;
@@ -74,7 +74,7 @@ public class ParcBean extends DatePlace implements java.io.Serializable {
 				private String jardinClos;
 				
 				@Persistent
-				private float surfaceHorsBat;
+				private double surfaceHorsBat;
 				
 				@Persistent
 				private String commentaires;
@@ -113,6 +113,9 @@ public class ParcBean extends DatePlace implements java.io.Serializable {
 				public ParcBean(ParcResult p) {
 								this.code = p.getCode();
 								this.libelle = p.getLibelle();
+								this.adressePostale = p.getAdressePostale();
+								this.lat = p.getLat();
+								this.longi = p.getLongi();
 								this.accesTan = p.getAccesTan();
 								this.jeux = p.getJeux();
 								this.mobilierPiquenique = p.getMobilierPiquenique();
@@ -122,9 +125,33 @@ public class ParcBean extends DatePlace implements java.io.Serializable {
 								this.abris = p.getAbris();
 								this.accesHand = p.getAccesHand();
 								this.collectionVegetale = p.getCollectionVegetale();
+								this.gardien = p.getGardien();
 								this.chienInterdit = p.getChienInterdit();
 								this.jardinClos = p.getJardinClos();
+								this.surfaceHorsBat = p.getSurfaceHorsBat();
 								this.commentaires = p.getCommentaires();
+				}
+				
+				public ParcBean(String[] d) {
+								this.code = Integer.parseInt(d[0]);
+								this.libelle = d[1];
+								this.adressePostale = d[2];
+								this.lat = Double.parseDouble(d[3]);
+								this.longi = Double.parseDouble(d[4]);
+								this.accesTan = d[5];
+								this.jeux = d[6];
+								this.mobilierPiquenique = d[7];
+								this.pateaugeoire = d[8];
+								this.pointEau = d[9];
+								this.sanitaire = d[10];
+								this.abris = d[11];
+								this.accesHand = d[12];
+								this.collectionVegetale = d[13];
+								this.gardien = d[14];
+								this.surfaceHorsBat = Double.parseDouble(d[15]);
+								this.chienInterdit = d[16];
+								this.jardinClos = d[17];
+								this.commentaires = d[18];
 				}
 				
 				public String toString(){
@@ -187,28 +214,28 @@ public class ParcBean extends DatePlace implements java.io.Serializable {
 				/**
 				 * @return the lat
 				 */
-				public float getLat() {
+				public double getLat() {
 								return lat;
 				}
 
 				/**
 				 * @param lat the lat to set
 				 */
-				public void setLat(float lat) {
+				public void setLat(double lat) {
 								this.lat = lat;
 				}
 
 				/**
 				 * @return the longi
 				 */
-				public float getLongi() {
+				public double getLongi() {
 								return longi;
 				}
 
 				/**
 				 * @param longi the longi to set
 				 */
-				public void setLongi(float longi) {
+				public void setLongi(double longi) {
 								this.longi = longi;
 				}
 
@@ -383,14 +410,14 @@ public class ParcBean extends DatePlace implements java.io.Serializable {
 				/**
 				 * @return the surfaceHorsBat
 				 */
-				public float getSurfaceHorsBat() {
+				public double getSurfaceHorsBat() {
 								return surfaceHorsBat;
 				}
 
 				/**
 				 * @param surfaceHorsBat the surfaceHorsBat to set
 				 */
-				public void setSurfaceHorsBat(float surfaceHorsBat) {
+				public void setSurfaceHorsBat(double surfaceHorsBat) {
 								this.surfaceHorsBat = surfaceHorsBat;
 				}
 

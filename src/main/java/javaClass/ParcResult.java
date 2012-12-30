@@ -4,31 +4,57 @@
  */
 package javaClass;
 
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
 /**
  *
  * @author Nomyx
  */
+@PersistenceCapable
 public class ParcResult {
 				
+				@Persistent
 				private double distance = 0;
+				@PrimaryKey
+				@Persistent
 				private int code = 0;
+				@Persistent
 				private String libelle = "";
+				@Persistent
 				private String adressePostale = "";
+				@Persistent
 				private float lat = 0;
+				@Persistent
 				private float longi = 0;
+				@Persistent
 				private String accesTan = "";
+				@Persistent
 				private String jeux = "";
+				@Persistent
 				private String mobilierPiquenique = "";
+				@Persistent
 				private String pateaugeoire = "";
+				@Persistent
 				private String pointEau = "";
+				@Persistent
 				private String sanitaire = "";
+				@Persistent
 				private String abris = "";
+				@Persistent
 				private String accesHand = "";
+				@Persistent
 				private String collectionVegetale = "";
+				@Persistent
 				private String gardien = "";
+				@Persistent
 				private String chienInterdit = "";
+				@Persistent
 				private String jardinClos = "";
+				@Persistent
 				private float surfaceHorsBat = 0;
+				@Persistent
 				private String commentaires = "";
 
 				/**
