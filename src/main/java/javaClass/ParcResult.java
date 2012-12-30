@@ -2,98 +2,43 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package bean;
-
-import javaClass.ParcResult;
-import java.util.ArrayList;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.jdo.annotations.PersistenceCapable;
-import javax.jdo.annotations.Persistent;
-import javax.jdo.annotations.PrimaryKey;
+package javaClass;
 
 /**
  *
  * @author Nomyx
  */
-@ManagedBean(name = "ParcBean")
-@SessionScoped
-@PersistenceCapable
-public class ParcBean extends DatePlace implements java.io.Serializable {
+public class ParcResult {
+				
+				private double distance = 0;
+				private int code = 0;
+				private String libelle = "";
+				private String adressePostale = "";
+				private float lat = 0;
+				private float longi = 0;
+				private String accesTan = "";
+				private String jeux = "";
+				private String mobilierPiquenique = "";
+				private String pateaugeoire = "";
+				private String pointEau = "";
+				private String sanitaire = "";
+				private String abris = "";
+				private String accesHand = "";
+				private String collectionVegetale = "";
+				private String gardien = "";
+				private String chienInterdit = "";
+				private String jardinClos = "";
+				private float surfaceHorsBat = 0;
+				private String commentaires = "";
 
-				@PrimaryKey
-				@Persistent
-				private int code;
-				
-				@Persistent
-				private String libelle;
-				
-				@Persistent
-				private String adressePostale;
-				
-				@Persistent
-				private float lat;
-				
-				@Persistent
-				private float longi;
-				
-				@Persistent
-				private String accesTan;
-				
-				@Persistent
-				private String jeux;
-				
-				@Persistent
-				private String mobilierPiquenique;
-				
-				@Persistent
-				private String pateaugeoire;
-				
-				@Persistent
-				private String pointEau;
-				
-				@Persistent
-				private String sanitaire;
-				
-				@Persistent
-				private String abris;
-				
-				@Persistent
-				private String accesHand;
-				
-				@Persistent
-				private String collectionVegetale;
-				
-				@Persistent
-				private String gardien;
-				
-				@Persistent
-				private String chienInterdit;
-				
-				@Persistent
-				private String jardinClos;
-				
-				@Persistent
-				private float surfaceHorsBat;
-				
-				@Persistent
-				private String commentaires;
-				
 				/**
 				 * Creates a new instance of ParcBean
 				 */
-				public ParcBean() {
-								super();
+				public ParcResult() {
 				}
 				
-				public ParcBean(int c, String lib) {
-								super();
-								this.code = c;
-								this.libelle = lib;
-				}
-    
-    public ParcBean(int c, String lib, String tan, String jeux, String pic, String pat, String pteau, String san, String abris, String hand, String veg, String chien, String clos, String com) {
-								super();
+    public ParcResult(double distance, int c, String lib, String tan, String jeux, String pic, String pat, String pteau, String san, String abris, String hand, String veg, String chien, String clos, String com) {
+								this.distance = distance;
 								this.code = c;
 								this.libelle = lib;
 								this.accesTan = tan;
@@ -108,23 +53,6 @@ public class ParcBean extends DatePlace implements java.io.Serializable {
 								this.chienInterdit = chien;
 								this.jardinClos = clos;
 								this.commentaires = com;
-				}
-				
-				public ParcBean(ParcResult p) {
-								this.code = p.getCode();
-								this.libelle = p.getLibelle();
-								this.accesTan = p.getAccesTan();
-								this.jeux = p.getJeux();
-								this.mobilierPiquenique = p.getMobilierPiquenique();
-								this.pateaugeoire = p.getPateaugeoire();
-								this.pointEau = p.getPointEau();
-								this.sanitaire = p.getSanitaire();
-								this.abris = p.getAbris();
-								this.accesHand = p.getAccesHand();
-								this.collectionVegetale = p.getCollectionVegetale();
-								this.chienInterdit = p.getChienInterdit();
-								this.jardinClos = p.getJardinClos();
-								this.commentaires = p.getCommentaires();
 				}
 				
 				public String toString(){
@@ -406,5 +334,19 @@ public class ParcBean extends DatePlace implements java.io.Serializable {
 				 */
 				public void setCommentaires(String commentaires) {
 								this.commentaires = commentaires;
+				}
+
+				/**
+				 * @return the distance
+				 */
+				public double getDistance() {
+								return distance;
+				}
+
+				/**
+				 * @param distance the distance to set
+				 */
+				public void setDistance(double distance) {
+								this.distance = distance;
 				}
 }

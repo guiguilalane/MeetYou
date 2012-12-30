@@ -6,7 +6,7 @@ package persistance;
 
 
 import PMF.PMF;
-import bean.AmiBean;
+import bean.ParcBean;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Transaction;
@@ -15,22 +15,22 @@ import javax.jdo.Transaction;
  * @author guillaume
  */
 
-public class AmiBeanPersist {
+public class ParcBeanPersist {
     
     private PersistenceManagerFactory pmf = PMF.getInstance();
     private PersistenceManager pm = null;
     private Transaction tx = null;
     
-    public AmiBeanPersist(){
+    public ParcBeanPersist(){
 
     }
     
-    public void enregistrer(AmiBean a){
+    public void enregistrer(ParcBean p){
         try{
             pm = pmf.getPersistenceManager();
             tx = pm.currentTransaction();
             tx.begin();
-            pm.makePersistent(a);
+            pm.makePersistent(p);
             tx.commit();
         }
         catch(Exception e){

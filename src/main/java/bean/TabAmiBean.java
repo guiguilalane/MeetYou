@@ -46,11 +46,11 @@ public class TabAmiBean implements java.io.Serializable {
 				public TabAmiBean() {
         AmiBeanPersist pp = new AmiBeanPersist();
         AmiBean Bs, Gc, Dm, Ff, Cg;
-        Bs = new AmiBean("BULLIER", "Sidonie", 0, 1);
-        Gc = new AmiBean("GREGOIRE", "Clémence", 1,0);
-        Dm = new AmiBean("DUPUIS", "Mathilde",7,8);
-        Ff = new AmiBean("FAGNIEZ", "Florian",0,2);
-        Cg = new AmiBean("COUTABLE", "Guillaume",0,0);
+        Bs = new AmiBean("0001", "BULLIER", "Sidonie", 0, 1);
+        Gc = new AmiBean("0002", "GREGOIRE", "Clémence", 1, 0);
+        Dm = new AmiBean("0003", "DUPUIS", "Mathilde", 7, 8);
+        Ff = new AmiBean("0004", "FAGNIEZ", "Florian", 0, 2);
+        Cg = new AmiBean("0005", "COUTABLE", "Guillaume", 0, 0);
         pp.enregistrer(Bs);
         pp.enregistrer(Gc);
         pp.enregistrer(Dm);

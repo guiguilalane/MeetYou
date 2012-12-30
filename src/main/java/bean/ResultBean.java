@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import persistance.ResultBeanPersist;
 
 /**
  *
@@ -129,27 +130,12 @@ public class ResultBean implements java.io.Serializable {
 				}
 
 				public void rechercheParc() {
+								ResultBeanPersist pp = new ResultBeanPersist();
 								calculPointRencontre();
+								pp.calculResultat(this);
+								
+					
 								// Recherche dans la base des 5 parcs les plus proches !
-								/*
-								 {
-								 var latitude1 = lat1 * Math.PI / 180;
-								 var latitude2 = lat2 * Math.PI / 180;
- 
-								 var longitude1 = long1 * Math.PI / 180;
-								 var longitude2 = long2 * Math.PI / 180;
- 
-								 var R = 6371d;
- 
-								 var d = R * Math.Acos(Math.Cos(latitude1) * Math.Cos(latitude2) *
-								 Math.Cos(longitude2 - longitude1) + Math.Sin(latitude1) *
-								 Math.Sin(latitude2));
- 
-								 return d;
-								 }
-								 */
-								
-								
 								// Ajout dans le tableau
 				}
 }

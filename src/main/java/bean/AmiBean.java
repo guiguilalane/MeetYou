@@ -21,6 +21,9 @@ import javax.jdo.annotations.PrimaryKey;
 public class AmiBean implements java.io.Serializable {
 
     @PrimaryKey
+				@Persistent
+				private String token;
+				
     @Persistent
 				private String nom;
     
@@ -46,7 +49,8 @@ public class AmiBean implements java.io.Serializable {
 				public AmiBean() {
 				}
 
-				public AmiBean(String n, String p, float lat, float longi) {
+				public AmiBean(String token, String n, String p, float lat, float longi) {
+								this.token = token;
 								this.nom = n;
 								this.prenom = p;
         this.lat = lat;
@@ -129,5 +133,19 @@ public class AmiBean implements java.io.Serializable {
 				 */
 				public void setIsSelected(Boolean isSelected) {
 								this.isSelected = isSelected;
+				}
+
+				/**
+				 * @return the token
+				 */
+				public String getToken() {
+								return token;
+				}
+
+				/**
+				 * @param token the token to set
+				 */
+				public void setToken(String token) {
+								this.token = token;
 				}
 }
