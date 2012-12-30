@@ -4,7 +4,6 @@
  */
 package persistance;
 
-import javaClass.ParcResult;
 import PMF.PMF;
 import bean.AmiBean;
 import bean.ParcBean;
