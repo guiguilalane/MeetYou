@@ -131,25 +131,30 @@ public class ParcBean extends DatePlace implements java.io.Serializable {
 								this.acces_handicap_y_compris_sanitai = d[12];
 								this.collection_vegetale = d[13];
 								this.gardien = d[14];
-								this.surface_hors_batiments = Double.parseDouble(d[15]);
-								this.chien_interdit_en_laisse = d[16];
-								this.jardin_clos = d[17];
+								this.chien_interdit_en_laisse = d[15];
+								this.jardin_clos = d[16];
+        this.surface_hors_batiments = Double.parseDouble(d[17]);
 								this.commentaires = d[18];
 				}
 				
+    @Override
 				public String toString(){
-								return ("Accès TAN: "+this.getAcces_tan()+
-																"<br/> Jeux: "+this.getJeux()+
-																"<br/> Aire de pique-nique: "+this.getMobilier_pique_nique()+
-																"<br/> Pateaugeoire: "+this.getPataugeoire()+
-																"<br/> Point d'eau: "+this.getPoint_d_eau()+
-																"<br/> Sanitaire: "+this.getSanitaires()+
-																"<br/> Abris: "+this.getAbris()+
-																"<br/> Accès handicapé: "+this.getAcces_handicap_y_compris_sanitai()+
-																"<br/> Collection végétale: "+this.getCollection_vegetale()+
-																"<br/> Chien interdit en laisse: "+this.getChien_interdit_en_laisse()+
-																"<br/> Jardin clos: "+this.getJardin_clos()+
-																"<br/> Commentaires: "+this.getCommentaires());
+								return (/*"Code: "+ this.code+
+                "\n<br/> libelle: " + this.libelle+
+                "\n<br/> adresse postale: " + this.adresse_postale+
+                "\n<br/> coordonnées: (" + this.latitude + ", " + this.longitude + ")"+
+                "\n<br/>*/" Accès TAN: "+this.getAcces_tan()+
+																"\n<br/> Jeux: "+this.getJeux()+
+																"\n<br/> Aire de pique-nique: "+this.getMobilier_pique_nique()+
+																"\n<br/> Pateaugeoire: "+this.getPataugeoire()+
+																"\n<br/> Point d'eau: "+this.getPoint_d_eau()+
+																"\n<br/> Sanitaire: "+this.getSanitaires()+
+																"\n<br/> Abris: "+this.getAbris()+
+																"\n<br/> Accès handicapé: "+this.getAcces_handicap_y_compris_sanitai()+
+																"\n<br/> Collection végétale: "+this.getCollection_vegetale()+
+																"\n<br/> Chien interdit en laisse: "+this.getChien_interdit_en_laisse()+
+																"\n<br/> Jardin clos: "+this.getJardin_clos()+
+																"\n<br/> Commentaires: "+this.getCommentaires());
 				}
 
     /**

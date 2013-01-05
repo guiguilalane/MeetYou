@@ -40,6 +40,16 @@
         <!-- Ajout de openStreetMap à la page web -->
         <script type="text/javascript" charset="utf-8" src="script/OpenLayers/OpenLayers.js"></script>
         <script type="text/javascript" charset="utf-8" src="script/XMLHttpRequest.js"></script>	
+        <script type="text/javascript">
+            $.fx.speeds._default = 500;
+            function setDialogWindow(idParc){
+                $( '#InfoParc'+idParc ).dialog({autoOpen: true,show: 'blind',hide: 'explode'});
+                $( '#openerInfoParc'+idParc).click(function() {
+                    $( '#InfoParc'+idParc ).dialog( 'open' );
+                    return false;
+                });
+            }
+        </script>
 
 								<title>I wish to meet you</title>
     </h:head>
@@ -140,7 +150,7 @@
 																								<h:outputText value="#{ResultBean.tab.get(numberParc).libelle}"/>
 																				</h:column>
 																				<h:column>
-																								<button id="openerInfoParc#{numberParc}">Afficher</button>
+																								<button id="openerInfoParc#{numberParc}" onclick="var idParc = #{numberParc}; setDialogWindow(idParc);">Afficher</button>
 																				</h:column>
 																</h:dataTable>
 												</fieldset>
@@ -149,7 +159,7 @@
 								<!-- Boites de dialogues -->
 								<h:dataTable value="#{ResultBean.getKeyAsList()}" var="numberParc" >
 												<h:column>
-																<div id="InfoParc#{numberParc}" title="#{ResultBean.tab.get(numberParc).libelle}">
+																<div id="InfoParc#{numberParc}" title="#{ResultBean.tab.get(numberParc).libelle}" style="display: none">
 																				<fieldset>
 																								<legend> Informations </legend>
 																								<h:outputText value="#{ResultBean.tab.get(numberParc).toString()}" escape="false"/>

@@ -4,10 +4,17 @@
  */
 package bean;
 
+import fichier.GestionFichier;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import persistance.ParcBeanPersist;
@@ -54,8 +61,8 @@ public class ResultBean implements java.io.Serializable {
 								this.tab = tab;
 				}
 
-				public List<Integer> getKeyAsList() {
-								return new ArrayList<Integer>(tab.keySet());
+				public ArrayList<Integer> getKeyAsList() {
+        return new ArrayList<Integer>(tab.keySet());
 				}
 
 				/**
@@ -132,22 +139,34 @@ public class ResultBean implements java.io.Serializable {
 
 				public void rechercheParc() {
         
-        ParcBeanPersist pbp = new ParcBeanPersist();
-        ParcBean p1, p2, p3, p4;
-        p1 = new ParcBean(34, "Parc des dervallières", "Rue louis le nain", 47.2248, -1.59412, "Vincent auriol ligne 56", "NON", "NON", "NON", "NON", "NON", "NON", "NON", "", "NON", "NON", "NON", 82110.0, "");
-        p2 = new ParcBean(35, "Jardin d'enfants de procé", "	Rue des dervallières",	47.2222, -1.58153,	"Lignes 22 et 56 - procé",	"OUI",	"NON", "OUI",	"OUI", "OUI",	"NON", "NON", "", "OUI", "OUI", "OUI", 5800.0, "");
-        p3 = new ParcBean(36, "Parc de proce", "Rue des dervallières, boulevard des anglais", 	47.2243,	-1.58156, "Lignes 22 et 56 - procé",	"OUI",	"NON",	"NON",	"OUI",	"OUI",	"NON",	"NON",	"Bruyères, rhododendrons, magnolias, andromèdes, lis, fuchsias, dahlias,  vivaces",	"OUI", "NON", "OUI",	113000,	"Le parc a été créé au milieu du siècle dernier, d'après les plans de d. noisette, autour d'un manoir datant de 1789.");
-        p4 = new ParcBean(115, "Square amiral halgand", "	Place de l'hotel de ville",	47.2175,	-1.55443,	"Hôtel de ville lignes 11 12 21 22 23 c lu",	"NON",	"NON",	"NON",	"NON",	"OUI",	"NON", "NON",	"","NON",	"NON",	"OUI",	1298,	"Le square de la mairie date de la reconstruction d'après-guerre, quelques jeux et la statue du général leclerc sont les principaux ornements.");
-								pbp.enregistrer(p1);
-        pbp.enregistrer(p2);
-        pbp.enregistrer(p3);
-        pbp.enregistrer(p4);
+//        ParcBeanPersist pbp = new ParcBeanPersist();
+//        ParcBean p1, p2, p3, p4;
+//        p1 = new ParcBean(34, "Parc des dervallières", "Rue louis le nain", 47.2248, -1.59412, "Vincent auriol ligne 56", "NON", "NON", "NON", "NON", "NON", "NON", "NON", "", "NON", "NON", "NON", 82110.0, "");
+//        p2 = new ParcBean(35, "Jardin d'enfants de procé", "	Rue des dervallières",	47.2222, -1.58153,	"Lignes 22 et 56 - procé",	"OUI",	"NON", "OUI",	"OUI", "OUI",	"NON", "NON", "", "OUI", "OUI", "OUI", 5800.0, "");
+//        p3 = new ParcBean(36, "Parc de proce", "Rue des dervallières, boulevard des anglais", 	47.2243,	-1.58156, "Lignes 22 et 56 - procé",	"OUI",	"NON",	"NON",	"OUI",	"OUI",	"NON",	"NON",	"Bruyères, rhododendrons, magnolias, andromèdes, lis, fuchsias, dahlias,  vivaces",	"OUI", "NON", "OUI",	113000,	"Le parc a été créé au milieu du siècle dernier, d'après les plans de d. noisette, autour d'un manoir datant de 1789.");
+//        p4 = new ParcBean(115, "Square amiral halgand", "	Place de l'hotel de ville",	47.2175,	-1.55443,	"Hôtel de ville lignes 11 12 21 22 23 c lu",	"NON",	"NON",	"NON",	"NON",	"OUI",	"NON", "NON",	"","NON",	"NON",	"OUI",	1298,	"Le square de la mairie date de la reconstruction d'après-guerre, quelques jeux et la statue du général leclerc sont les principaux ornements.");
+//								pbp.enregistrer(p1);
+//        pbp.enregistrer(p2);
+//        pbp.enregistrer(p3);
+//        pbp.enregistrer(p4);
         
-        ResultBeanPersist pp = new ResultBeanPersist();
-								calculPointRencontre();
-								pp.calculResultat(this);
-								
-								// Recherche dans la base des 5 parcs les plus proches !
-								// Ajout dans le tableau
+        GestionFichier gf = new GestionFichier("http://data.nantes.fr/api/publication/LOC_PARCS_JARDINS_NANTES/LOC_PARCS_JARDINS_NANTES_STBL/content/?format=csv","jardins_parcs.csv");
+        try {
+            gf.charger();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ResultBean.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(ResultBean.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ResultBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          
+          ResultBeanPersist pp = new ResultBeanPersist();
+  								calculPointRencontre();
+  								pp.calculResultat(this);
+          
+          // Ajout dans le tableau
+          // Ajout dans le tableau
+        
 				}
 }

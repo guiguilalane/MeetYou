@@ -90,40 +90,4 @@ function geolocalisation(){
 								alert("La géolocalisation n'est pas supportée par votre navigateur.");
 				}
 }
-												
-$.fx.speeds._default = 500;
-$(function() {
-				var i=1;
-				for(i;i<=5;i++){
-								$( "#InfoParc"+i ).dialog({
-												autoOpen: false,
-												show: "blind",
-												hide: "explode"
-								});
-				}
-				
-				$( "#openerInfoParc1").click(function() {
-								$( "#InfoParc1" ).dialog( "open" );
-								return false;
-				});
- 
-				$( "#openerInfoParc2").click(function() {
-								$( "#InfoParc2" ).dialog( "open" );
-								return false;
-				});
- 
-				$( "#openerInfoParc3").click(function() {
-								$( "#InfoParc3" ).dialog( "open" );
-								return false;
-				});
- 
-				$( "#openerInfoParc4").click(function() {
-								$( "#InfoParc4" ).dialog( "open" );
-								return false;
-				});
- 
-				$( "#openerInfoParc5").click(function() {
-								$( "#InfoParc5" ).dialog( "open" );
-								return false;
-				});
-});
+            
