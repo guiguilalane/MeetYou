@@ -36,9 +36,6 @@ import sun.net.www.protocol.http.HttpURLConnection;
 public final class GestionFichier {
 				File cheminStockage;
 				private String urlFichier;
-				private String requeteSuppr;
-				private String requeteCreation;
-				private String requeteInsert;
     private String cheminFile;
 				private int taille;
     InputStream input = null;
@@ -95,7 +92,7 @@ public final class GestionFichier {
 
             System.gc();
             String BUFFER_SIZE = "12096";
-            String tempDirectory = "/home/guillaume/Téléchargements";
+            String tempDirectory = "";
             String slash = "/";
             
             if (BUFFER_SIZE != null && BUFFER_SIZE.trim().length() > 1) {
@@ -222,8 +219,10 @@ public final class GestionFichier {
             boolean downloadSuccess = downloadFile(connection, fileLength, cheminFile);
             if (downloadSuccess) {
                     downloadSuccess = renameTempFile(cheminFile, tempFile);
-                    if (downloadSuccess)
+                    if (downloadSuccess) {
                         downloadSuccess = deletePropFileOnCompletion(propertiesFile);
+                        
+                    }
                 }
 								}
 								catch (IOException e)
@@ -243,59 +242,6 @@ public final class GestionFichier {
 								}
 				}
 				
-	/**
-   * Decompresse le fichier zip dans le répertoire donné
-   * @throws FileNotFoundException
-   * @throws IOException
-   */
-//  public void unzip() throws FileNotFoundException, IOException{
-//
-//								// Création de la ZipInputStream qui va servir à lire les données du fichier zip
-//								ZipInputStream zis = new ZipInputStream(new BufferedInputStream(new FileInputStream(this.fichierZip.getCanonicalFile())));
-//
-//								// Extractions des entrées du fichiers zip (i.e. le contenu du zip)
-//								ZipEntry ze = null;
-//								try {
-//												while((ze = zis.getNextEntry()) != null){
-//
-//																// Pour chaque entrée, on crée un fichier dans le répertoire de sortie "cheminStockage"
-//																File f = new File(this.cheminStockage.getCanonicalPath(), ze.getName());
-//																System.out.println(this.cheminStockage.getCanonicalPath()+ze.getName());
-//																// Si l'entrée est un répertoire, on le crée dans le répertoire de sortie et on passe à l'entrée suivante (continue)
-//																if (ze.isDirectory()) {
-//																				f.mkdirs();
-//																				continue;
-//																}
-//
-//																// L'entrée est un fichier, on crée une OutputStream pour écrire le contenu du nouveau fichier
-//																f.getParentFile().mkdirs();
-//																OutputStream fos = new BufferedOutputStream(new FileOutputStream(f));
-//
-//																// On écrit le contenu du nouveau fichier qu'on lit à partir de la ZipInputStream au moyen d'un buffer (byte[])
-//																try {
-//																				try {
-//																								final byte[] buf = new byte[8192];
-//																								int bytesRead;
-//																								while (-1 != (bytesRead = zis.read(buf))){
-//																												fos.write(buf, 0, bytesRead);
-//																								}
-//																				}
-//																				finally {
-//																								fos.close();
-//																				}
-//																}
-//																catch (final IOException ioe) {
-//																				// En cas d'erreur on efface le fichier
-//																				f.delete();
-//																				throw ioe;
-//																}
-//												}
-//								}
-//								finally {
-//												// Fermeture de la ZipInputStream
-//												zis.close();
-//								}
-//				}
 
 				public void parsingFile() throws MalformedURLException, IOException{
 								ParcBeanPersist pp = new ParcBeanPersist();
@@ -352,7 +298,6 @@ public final class GestionFichier {
 																donnees[taille-1]="";
 												}
 												ParcBean parc = new ParcBean(donnees);
-//            System.out.println(parc);
 												pp.enregistrer(parc);
 										}
 										numLigne++;

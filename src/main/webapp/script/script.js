@@ -90,4 +90,3 @@ function geolocalisation(){
 								alert("La géolocalisation n'est pas supportée par votre navigateur.");
 				}
 }
-            

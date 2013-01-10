@@ -41,6 +41,15 @@
         <script type="text/javascript" charset="utf-8" src="script/OpenLayers/OpenLayers.js"></script>
         <script type="text/javascript" charset="utf-8" src="script/XMLHttpRequest.js"></script>	
         <script type="text/javascript">
+            var positions = new Array();
+            var markers = new Array();
+            
+            positions.push(new mxn.LatLonPoint(47.1969, -1.5448));
+            markers.push(new mxn.Marker(positions[0]));
+            markers[0].setIcon("script/OpenLayers/img/marker-green.png");
+            
+//            mapstraction.addMarker(markers[0]);
+
             $.fx.speeds._default = 500;
             function setDialogWindow(idParc){
                 $( '#InfoParc'+idParc ).dialog({autoOpen: true,show: 'blind',hide: 'explode'});
@@ -48,6 +57,11 @@
                     $( '#InfoParc'+idParc ).dialog( 'open' );
                     return false;
                 });
+            }
+            
+            function essai(lat, lon){
+                mapstraction.addMarker(markers[0]);
+                alert("ami latitude : " + lat + ", longitude : " + lon);
             }
         </script>
 
@@ -90,9 +104,8 @@
 																																								<h:panelGroup rendered="${triple.a != null}">
 																																												<fieldset>
 																																																<legend>
-																																																				<h:selectBooleanCheckbox label="#{triple.a.id}" disabled="#{triple.a.notActif}" value="#{triple.a.isSelected}">
+																																																				<h:selectBooleanCheckbox label="#{triple.a.id}" disabled="#{triple.a.notActif}" value="#{triple.a.isSelected}" onclick="essai(#{triple.a.lat}, #{triple.a.longi});">
                                                         <f:ajax event="click" listener="#{ResultBean.gestionAmi(triple.a)}" render=":essai"/>
-
                                                     </h:selectBooleanCheckbox>
 																																																				<h:outputText value="#{triple.a.nom} #{triple.a.prenom}" />
 																																																</legend>
