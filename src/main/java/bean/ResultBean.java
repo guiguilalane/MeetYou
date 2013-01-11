@@ -40,8 +40,8 @@ public class ResultBean implements java.io.Serializable {
 				 */
 				public ResultBean() {
 								// TODO : A supprimer
-								//	tab.put(1, new ParcBean(01, "Jardin des plantes", "Gare sncf lignes 1 et 12", "OUI", "NON", "OUI", "OUI", "OUI", "OUI", "", "Camellia, epiphytes, cactées", "OUI", "NON", "C’est en 1807 que débute la création du jardin des plantes. caractéristique des jardins paysagers du siècle dernier, il présente un modelé souple avec de nombreuses cascades et pièces d’eau ainsi qu’une décoration florale abondante maintenant la tradition de la mosaïculture.quelques points spécifiques doivent être mentionnés :  • la montagne : ce monticule artificiel a été réalisé avec les matériaux résultant du creusement du lac .• le magnolia d’hectot : planté en 1807, à l’âge de seize ans, c’est le plus vieil arbre du jardin.• le palmarium : construit en 1898, il abrite une collection exceptionnelle d’épiphytes.• l’orangerie : elle est destinée à l’abri des plantes en bacs pendant l’hiver.• l es serres à cactées : ancien jardin d’hiver réhabilité, ce bâtiment abrite une des plus complètes collections de cactées et succulentes de l’hexagone.• l’ecole de botanique : présente la diversité de la flore du massif armoricain.• le jardin d’essai : situé à proximité, présente au public une gamme avec leur nomenclature des plants utilisés chaque année pour la décoration des massifs floraux.• collection de camellias : c’est une plante symbole pour nantes représentée ici par une collection de 600 cultivars."));
-							/*	tab.put(2, new ParcBean(02, "Parc des dervallières"));
+								//tab.put(1, new ParcBean(01, "Jardin des plantes", "Gare sncf lignes 1 et 12", "OUI", "NON", "OUI", "OUI", "OUI", "OUI", "", "Camellia, epiphytes, cactées", "OUI", "NON", "C’est en 1807 que débute la création du jardin des plantes. caractéristique des jardins paysagers du siècle dernier, il présente un modelé souple avec de nombreuses cascades et pièces d’eau ainsi qu’une décoration florale abondante maintenant la tradition de la mosaïculture.quelques points spécifiques doivent être mentionnés :  • la montagne : ce monticule artificiel a été réalisé avec les matériaux résultant du creusement du lac .• le magnolia d’hectot : planté en 1807, à l’âge de seize ans, c’est le plus vieil arbre du jardin.• le palmarium : construit en 1898, il abrite une collection exceptionnelle d’épiphytes.• l’orangerie : elle est destinée à l’abri des plantes en bacs pendant l’hiver.• l es serres à cactées : ancien jardin d’hiver réhabilité, ce bâtiment abrite une des plus complètes collections de cactées et succulentes de l’hexagone.• l’ecole de botanique : présente la diversité de la flore du massif armoricain.• le jardin d’essai : situé à proximité, présente au public une gamme avec leur nomenclature des plants utilisés chaque année pour la décoration des massifs floraux.• collection de camellias : c’est une plante symbole pour nantes représentée ici par une collection de 600 cultivars."));
+								/*tab.put(2, new ParcBean(02, "Parc des dervallières"));
 								 tab.put(3, new ParcBean(03, "Square louis bureau"));
 								 tab.put(4, new ParcBean(04, "Square maquis de saffré"));
 								 tab.put(5, new ParcBean(05, "Jardin des cinq sens"));*/
@@ -62,7 +62,7 @@ public class ResultBean implements java.io.Serializable {
 				}
 
 				public ArrayList<Integer> getKeyAsList() {
-        return new ArrayList<Integer>(tab.keySet());
+								return new ArrayList<Integer>(tab.keySet());
 				}
 
 				/**
@@ -138,7 +138,7 @@ public class ResultBean implements java.io.Serializable {
 				}
 
 				public void rechercheParc() {
-        
+
 //        ParcBeanPersist pbp = new ParcBeanPersist();
 //        ParcBean p1, p2, p3, p4;
 //        p1 = new ParcBean(34, "Parc des dervallières", "Rue louis le nain", 47.2248, -1.59412, "Vincent auriol ligne 56", "NON", "NON", "NON", "NON", "NON", "NON", "NON", "", "NON", "NON", "NON", 82110.0, "");
@@ -149,24 +149,52 @@ public class ResultBean implements java.io.Serializable {
 //        pbp.enregistrer(p2);
 //        pbp.enregistrer(p3);
 //        pbp.enregistrer(p4);
-        
-        GestionFichier gf = new GestionFichier("http://data.nantes.fr/api/publication/LOC_PARCS_JARDINS_NANTES/LOC_PARCS_JARDINS_NANTES_STBL/content/?format=csv","jardins_parcs.csv");
-        try {
-            gf.charger();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ResultBean.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(ResultBean.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ResultBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
-          
-          ResultBeanPersist pp = new ResultBeanPersist();
-  								calculPointRencontre();
-  								pp.calculResultat(this);
-          
-          // Ajout dans le tableau
-          // Ajout dans le tableau
-        
+
+								/*					GestionFichier gf = new GestionFichier("http://data.nantes.fr/api/publication/LOC_PARCS_JARDINS_NANTES/LOC_PARCS_JARDINS_NANTES_STBL/content/?format=csv", "jardins_parcs.csv");
+								 try {
+								 gf.charger();
+								 } catch (FileNotFoundException ex) {
+								 Logger.getLogger(ResultBean.class.getName()).log(Level.SEVERE, null, ex);
+								 } catch (MalformedURLException ex) {
+								 Logger.getLogger(ResultBean.class.getName()).log(Level.SEVERE, null, ex);
+								 } catch (IOException ex) {
+								 Logger.getLogger(ResultBean.class.getName()).log(Level.SEVERE, null, ex);
+								 }*/
+
+								ResultBeanPersist pp = new ResultBeanPersist();
+								calculPointRencontre();
+								pp.calculResultat(this);
+
+								// Ajout dans le tableau
+								// Ajout dans le tableau
+
+				}
+
+				public String transformeLatString() {
+								String res = "";
+								if (!tab.values().isEmpty()) {
+												Iterator<ParcBean> parcIter = tab.values().iterator();
+												ParcBean parc;
+												while (parcIter.hasNext()) {
+																parc = parcIter.next();
+																res = res + parc.getLatitude() + ",";
+												}
+												res = res.substring(0, res.length() - 1);
+								}
+								return res;
+				}
+
+				public String transformeLongString() {
+								String res = "";
+								if (!tab.values().isEmpty()) {
+												Iterator<ParcBean> parcIter = tab.values().iterator();
+												ParcBean parc;
+												while (parcIter.hasNext()) {
+																parc = parcIter.next();
+																res = res + parc.getLongitude() + ",";
+												}
+												res = res.substring(0, res.length() - 1);
+								}
+								return res;
 				}
 }

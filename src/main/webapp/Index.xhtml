@@ -41,28 +41,7 @@
         <script type="text/javascript" charset="utf-8" src="script/OpenLayers/OpenLayers.js"></script>
         <script type="text/javascript" charset="utf-8" src="script/XMLHttpRequest.js"></script>	
         <script type="text/javascript">
-            var positions = new Array();
-            var markers = new Array();
-            
-            positions.push(new mxn.LatLonPoint(47.1969, -1.5448));
-            markers.push(new mxn.Marker(positions[0]));
-            markers[0].setIcon("script/OpenLayers/img/marker-green.png");
-            
-//            mapstraction.addMarker(markers[0]);
-
-            $.fx.speeds._default = 500;
-            function setDialogWindow(idParc){
-                $( '#InfoParc'+idParc ).dialog({autoOpen: true,show: 'blind',hide: 'explode'});
-                $( '#openerInfoParc'+idParc).click(function() {
-                    $( '#InfoParc'+idParc ).dialog( 'open' );
-                    return false;
-                });
-            }
-            
-            function essai(lat, lon){
-                mapstraction.addMarker(markers[0]);
-                alert("ami latitude : " + lat + ", longitude : " + lon);
-            }
+												
         </script>
 
 								<title>I wish to meet you</title>
@@ -104,8 +83,8 @@
 																																								<h:panelGroup rendered="${triple.a != null}">
 																																												<fieldset>
 																																																<legend>
-																																																				<h:selectBooleanCheckbox label="#{triple.a.id}" disabled="#{triple.a.notActif}" value="#{triple.a.isSelected}" onclick="essai(#{triple.a.lat}, #{triple.a.longi});">
-                                                        <f:ajax event="click" listener="#{ResultBean.gestionAmi(triple.a)}" render=":essai"/>
+																																																				<h:selectBooleanCheckbox label="#{triple.a.id}" disabled="#{triple.a.notActif}" value="#{triple.a.isSelected}">
+																																																								<f:ajax event="click" listener="#{ResultBean.gestionAmi(triple.a)}" render="@form :essai" onevent="function(data) { ajaxAmi(data, '#{triple.a.nom}', '#{triple.a.prenom}', #{triple.a.lat}, #{triple.a.longi}, #{triple.a.isSelected}) }"/>
                                                     </h:selectBooleanCheckbox>
 																																																				<h:outputText value="#{triple.a.nom} #{triple.a.prenom}" />
 																																																</legend>
@@ -116,7 +95,7 @@
 																																												<fieldset>
 																																																<legend>
 																																																				<h:selectBooleanCheckbox label="#{triple.b.id}" disabled="#{triple.b.notActif}" value="#{triple.b.isSelected}">
-																																																								<f:ajax event="click" listener="#{ResultBean.gestionAmi(triple.b)}" render=":essai"/>
+																																																								<f:ajax event="click" listener="#{ResultBean.gestionAmi(triple.b)}" render="@form :essai" onevent="function(data) { ajaxAmi(data, '#{triple.b.nom}', '#{triple.b.prenom}', #{triple.b.lat}, #{triple.b.longi}, #{triple.b.isSelected}) }"/>
 																																																				</h:selectBooleanCheckbox>
 																																																				<h:outputText value="#{triple.b.nom} #{triple.b.prenom}" />
 																																																</legend>
@@ -128,7 +107,7 @@
 																																												<fieldset>
 																																																<legend>
 																																																				<h:selectBooleanCheckbox label="#{triple.c.id}" disabled="#{triple.c.notActif}" value="#{triple.c.isSelected}">
-																																																								<f:ajax event="click" listener="#{ResultBean.gestionAmi(triple.c)}" render=":essai"/>
+																																																								<f:ajax event="click" listener="#{ResultBean.gestionAmi(triple.c)}" render="@form :essai" onevent="function(data) { ajaxAmi(data, '#{triple.c.nom}', '#{triple.c.prenom}', #{triple.c.lat}, #{triple.c.longi}, #{triple.c.isSelected}) }"/>
 																																																				</h:selectBooleanCheckbox>
 																																																				<h:outputText value="#{triple.c.nom} #{triple.c.prenom}" />
 																																																</legend>
@@ -145,7 +124,9 @@
 												<!-- Bouton Rechercher -->
 												<div id="Recherche">
 																<h:form>
-																				<h:commandButton id="RechercherBouton" action="index" value="Rechercher" actionListener="#{ResultBean.rechercheParc()}"/>
+																				<h:commandButton id="RechercherBouton" value="Rechercher"  >
+																								<f:ajax render="@form :FormParc" listener="#{ResultBean.rechercheParc()}" onevent="function(data) { ajaxParc(data, '#{ResultBean.transformeLatString()}', '#{ResultBean.transformeLongString()}') }"/>
+																				</h:commandButton>
 																</h:form>
 												</div>
 
@@ -156,6 +137,7 @@
 												</fieldset>
 
 												<!-- Affichage des résultats -->
+												<h:form id="FormParc">
 												<fieldset id="ParcFound">
 																<legend> Les parcs </legend>
 																<h:dataTable value="#{ResultBean.getKeyAsList()}" var="numberParc">
@@ -167,6 +149,7 @@
 																				</h:column>
 																</h:dataTable>
 												</fieldset>
+												</h:form>
 								</div>
 
 								<!-- Boites de dialogues -->

@@ -41,7 +41,6 @@ public class ResultBeanPersist {
 												Iterator<ParcBean> parcIter = results.iterator();
 												ParcBean parcRes;
 												while (parcIter.hasNext()) {
-                System.out.println("hhh");
 																parcRes = parcIter.next();
 																tabRes.getTab().put(new Integer(parcRes.getCode()), parcRes);
 												}
