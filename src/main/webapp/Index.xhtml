@@ -146,7 +146,7 @@
 																												<h:outputText value="#{ResultBean.tab.get(numberParc).libelle}"/>
 																								</h:column>
 																								<h:column>
-																												<button id="openerInfoParc#{numberParc}" onclick="var idParc = #{numberParc}; setDialogWindow(idParc);">Afficher</button>
+																												<button id="openerInfoParc#{numberParc}" onclick="var idParc = #{numberParc}; setDialogWindow(idParc); return false;">Afficher</button>
 																								</h:column>
 																				</h:dataTable>
 																</fieldset>
