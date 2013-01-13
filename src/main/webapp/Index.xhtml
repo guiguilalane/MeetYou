@@ -88,7 +88,8 @@
                                                     </h:selectBooleanCheckbox>
 																																																				<h:outputText value="#{triple.a.nom} #{triple.a.prenom}" />
 																																																</legend>
-																																												</fieldset>																																								</h:panelGroup>
+																																												</fieldset>																																								
+                                        </h:panelGroup>
 																																				</h:column>		
 																																				<h:column>
 																																								<h:panelGroup rendered="${triple.b != null}">
@@ -138,7 +139,7 @@
 												</fieldset>
 
 												<!-- Affichage des résultats -->
-												<h:form id="FormParc">
+												<h:form id="FormParc" prependId="false">
 																<fieldset id="ParcFound">
 																				<legend> Les parcs </legend>
 																				<h:dataTable value="#{ResultBean.getKeyAsList()}" var="numberParc">
@@ -146,7 +147,7 @@
 																												<h:outputText value="#{ResultBean.tab.get(numberParc).libelle}"/>
 																								</h:column>
 																								<h:column>
-																												<button id="openerInfoParc#{numberParc}" onclick="var idParc = #{numberParc}; setDialogWindow(idParc); return false;">Afficher</button>
+                            <input type="button" onclick="setDialogWindow(#{numberParc}); return false;" value="Afficher"/>
 																								</h:column>
 																				</h:dataTable>
 																</fieldset>
