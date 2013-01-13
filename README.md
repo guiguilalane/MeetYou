@@ -2,7 +2,7 @@ MeetYou
 =======
 
 TODO :
-* Afficher les marqueurs des parcs sur la map (Noémie)
+* Afficher les marqueurs des parcs sur la map (Noémie) --> Check
 * Ajouter un AmiBean qui représente l'utilisateur en récupérant sa
 localisation et l'ajoutant au tableau des amis sélectionné (il doit
 toujours être dedans) (guillaume)
