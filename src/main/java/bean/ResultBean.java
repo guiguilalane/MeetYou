@@ -34,6 +34,7 @@ public class ResultBean implements java.io.Serializable {
 				private ArrayList<AmiBean> amiSelect = new ArrayList<AmiBean>();
 				private double posRencX = 0;
 				private double posRencY = 0;
+				private int change = 0;
 
 				/**
 				 * Creates a new instance of ResultBean
@@ -161,12 +162,10 @@ public class ResultBean implements java.io.Serializable {
 								 Logger.getLogger(ResultBean.class.getName()).log(Level.SEVERE, null, ex);
 								 }*/
 
+								change ++;
 								ResultBeanPersist pp = new ResultBeanPersist();
 								calculPointRencontre();
 								pp.calculResultat(this);
-
-								// Ajout dans le tableau
-								// Ajout dans le tableau
 
 				}
 
@@ -196,5 +195,33 @@ public class ResultBean implements java.io.Serializable {
 												res = res.substring(0, res.length() - 1);
 								}
 								return res;
+				}
+				
+				public String transformeLibString() {
+								String res = "";
+								if (!tab.values().isEmpty()) {
+												Iterator<ParcBean> parcIter = tab.values().iterator();
+												ParcBean parc;
+												while (parcIter.hasNext()) {
+																parc = parcIter.next();
+																res = res + parc.getLibelle().replaceAll("'", "\\\\'") + ",";
+												}
+												res = res.substring(0, res.length() - 1);
+								}
+								return res;
+				}
+
+				/**
+				 * @return the change
+				 */
+				public int getChange() {
+								return change;
+				}
+
+				/**
+				 * @param change the change to set
+				 */
+				public void setChange(int change) {
+								this.change = change;
 				}
 }

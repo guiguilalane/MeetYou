@@ -124,9 +124,10 @@
 												<!-- Bouton Rechercher -->
 												<div id="Recherche">
 																<h:form>
-																				<h:commandButton id="RechercherBouton" value="Rechercher"  >
-																								<f:ajax render="@form :FormParc" listener="#{ResultBean.rechercheParc()}" onevent="function(data) { ajaxParc(data, '#{ResultBean.transformeLatString()}', '#{ResultBean.transformeLongString()}') }"/>
+																				<h:commandButton id="RechercherBouton" value="Rechercher">
+																								<f:ajax listener="#{ResultBean.rechercheParc()}" render="@form :FormParc" onevent="function(data) { ajaxParc(data) }"/>
 																				</h:commandButton>
+																				<input id="cache" type="hidden" value="0" onchange="afficherResultCarte('#{ResultBean.transformeLibString()}', '#{ResultBean.transformeLatString()}', '#{ResultBean.transformeLongString()}');"/>
 																</h:form>
 												</div>
 

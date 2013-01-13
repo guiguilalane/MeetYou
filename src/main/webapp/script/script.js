@@ -3,6 +3,7 @@ var maposition;
 var positions = new Array();
 var markers = new Array();
 var resultats = new Array();
+var markersR = new Array();
             
 /*
              *Fonction utilisant la technologie Ajax, prend en paramètre une url et la fonction de traitement du résultat
@@ -77,7 +78,7 @@ function getParcours(sData){
 
 function geolocalisation(){
 				mapstraction = new mxn.Mapstraction('OpenStreetMap', 'openlayers');
-		/*		alert(positions.length);
+				/*		alert(positions.length);
 				for(var i in markers){
 								alert("geo");
 								mapstraction.addMarker(markers[i]);
@@ -145,9 +146,10 @@ function afficherAmiCarte(nom, prenom, lat, lon, select){
 								markers.push(mark);
 								mapstraction.addMarker(mark);
 				}
+				mapstraction.autoCenterAndZoom();
 }
 
-function ajaxParc(data, lats, lons) {
+function ajaxParc(data) {
 				var ajaxStatus = data.status;
 				switch (ajaxStatus) {
 								case "begin": // Statut juste avant que la requête Ajax soit envoyée
@@ -157,41 +159,42 @@ function ajaxParc(data, lats, lons) {
 												break;
  
 								case "success": // Statut juste après que le traitement Ajax soit terminé
-												afficherResultCarte(lats, lons);
+												document.getElementById('cache').onchange();
 												break;
 				}
 }
 
-function afficherResultCarte(tabResLat, tabResLong) {
-			//	var lats = new Array(tabResLat);
-				var lons = new Array(tabResLong.substring(1,tabResLong.length));
-				var lats = new Array(47.2248,47.2222,47.2243,47.2306,47.2125);
-				alert(tabResLat);
-				alert(tabResLong);
-				alert(lats.length);
-				alert(lons.length);
-		//		for(var p in tabResLat){
-								//tabRes[]
-						//		alert(p);
-				/*				var res = new mxn.LatLonPoint(tabRes[p].getLatitude(), tabRes[p].getLongitude());
+function afficherResultCarte(tabResLib, tabResLat, tabResLong) {
+				var t = resultats.length;
+				for (var i = 0; i<t; i++){
+								mapstraction.removeMarker(markersR[i]);
+								delete markersR[i];
+								delete resultats[i];
+				}
+				var libs = tabResLib.toString().split(',');
+				var lats = tabResLat.toString().split(',');
+				var lons = tabResLong.toString().split(',');
+				for (var p = 0; p<lats.length; p++){
+								var res = new mxn.LatLonPoint(lats[p], lons[p]);
 								var markRes = new mxn.Marker(res);
 								if (p == 0){
-												mark.setIcon("script/OpenLayers/img/marker-red.png");
+												markRes.setIcon("script/OpenLayers/img/marker.png");
 								}
 								else {
-								mark.setIcon("script/OpenLayers/img/marker-blue.png");
+												markRes.setIcon("script/OpenLayers/img/marker-blue.png");
 								}
-								mark.setInfoBubble(tabRes[p].getLibelle());
-								mark.setHover(true);
+								markRes.setInfoBubble(libs[p]);
+								markRes.setHover(true);
 								resultats.push(res);
-								mapstraction.addMarker(markRes);*/
-			//	}
-								
-//	}
+								markersR.push(markRes);
+								mapstraction.addMarker(markRes);
+				}
+				mapstraction.autoCenterAndZoom();
 }
 
 /*action="index" 
+	*listener="#{ResultBean.rechercheParc()}"
 	*onclick="afficherResultCarte(#{ResultBean.transformeLatString()}, #{ResultBean.transformeLongString()});" 
-	*onevent="function(data) { ajaxParc(data, #{ResultBean.transformeLatString()}, #{ResultBean.transformeLongString()}) }"
 	*actionListener="#{ResultBean.rechercheParc()}"
+	*onevent="function(data) { ajaxParc(data, '#{ResultBean.transformeLibString()}', '#{ResultBean.transformeLatString()}', '#{ResultBean.transformeLongString()}') }"
 	*/
