@@ -139,17 +139,17 @@
 
 												<!-- Affichage des résultats -->
 												<h:form id="FormParc">
-												<fieldset id="ParcFound">
-																<legend> Les parcs </legend>
-																<h:dataTable value="#{ResultBean.getKeyAsList()}" var="numberParc">
-																				<h:column>
-																								<h:outputText value="#{ResultBean.tab.get(numberParc).libelle}"/>
-																				</h:column>
-																				<h:column>
-																								<button id="openerInfoParc#{numberParc}" onclick="var idParc = #{numberParc}; setDialogWindow(idParc);">Afficher</button>
-																				</h:column>
-																</h:dataTable>
-												</fieldset>
+																<fieldset id="ParcFound">
+																				<legend> Les parcs </legend>
+																				<h:dataTable value="#{ResultBean.getKeyAsList()}" var="numberParc">
+																								<h:column>
+																												<h:outputText value="#{ResultBean.tab.get(numberParc).libelle}"/>
+																								</h:column>
+																								<h:column>
+																												<button id="openerInfoParc#{numberParc}" onclick="var idParc = #{numberParc}; setDialogWindow(idParc);">Afficher</button>
+																								</h:column>
+																				</h:dataTable>
+																</fieldset>
 												</h:form>
 								</div>
 
