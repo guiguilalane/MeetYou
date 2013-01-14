@@ -126,7 +126,7 @@
 												<div id="Recherche">
 																<h:form>
 																				<h:commandButton id="RechercherBouton" value="Rechercher">
-																								<f:ajax listener="#{ResultBean.rechercheParc()}" render="@form :FormParc" onevent="function(data) { ajaxParc(data) }"/>
+																								<f:ajax listener="#{ResultBean.rechercheParc()}" render="@form :FormParc :dialogue" onevent="function(data) { ajaxParc(data) }"/>
 																				</h:commandButton>
 																				<input id="cache" type="hidden" value="0" onchange="afficherResultCarte('#{ResultBean.transformeLibString()}', '#{ResultBean.transformeLatString()}', '#{ResultBean.transformeLongString()}');"/>
 																</h:form>
@@ -155,16 +155,18 @@
 								</div>
 
 								<!-- Boites de dialogues -->
-								<h:dataTable value="#{ResultBean.getKeyAsList()}" var="numberParc" >
-												<h:column>
-																<div id="InfoParc#{numberParc}" title="#{ResultBean.tab.get(numberParc).libelle}" style="display: none">
-																				<fieldset>
-																								<legend> Informations </legend>
-																								<h:outputText value="#{ResultBean.tab.get(numberParc).toString()}" escape="false"/>
-																				</fieldset>
-																</div>
-												</h:column>
-								</h:dataTable>
+								<h:form id="dialogue">
+												<h:dataTable value="#{ResultBean.getKeyAsList()}" var="numberParc" >
+																<h:column>
+																				<div id="InfoParc#{numberParc}" title="#{ResultBean.tab.get(numberParc).libelle}" style="display: none">
+																								<fieldset>
+																												<legend> Informations </legend>
+																												<h:outputText value="#{ResultBean.tab.get(numberParc).toString()}" escape="false"/>
+																								</fieldset>
+																				</div>
+																</h:column>
+												</h:dataTable>
+								</h:form>
 
 								<!-- Affichage des ami(e)s cochées -->
 								<h:form id="essai">
