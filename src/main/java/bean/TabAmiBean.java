@@ -5,6 +5,7 @@
 package bean;
 
 import java.util.ArrayList;
+import java.util.Vector;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import structure.Triple;
@@ -56,6 +57,14 @@ public class TabAmiBean implements java.io.Serializable {
         pp.enregistrer(Dm);
         pp.enregistrer(Ff);
         pp.enregistrer(Cg);
+        
+        BrotherhoodBeanPersist bbp = new BrotherhoodBeanPersist();
+        ArrayList<AmiBean> amiBeanArray = new ArrayList<AmiBean>();
+        amiBeanArray.add(Bs);
+        amiBeanArray.add(Gc);
+        amiBeanArray.add(Dm);
+        amiBeanArray.add(Ff);
+        bbp.addFriends(Cg, amiBeanArray);
 								tab.add(new Triple(Bs, Gc, Dm));
 								tab.add(new Triple(Ff, Cg, null));
 
