@@ -4,7 +4,6 @@
  */
 package bean;
 
-import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.jdo.annotations.PersistenceCapable;
@@ -139,11 +138,7 @@ public class ParcBean extends DatePlace implements java.io.Serializable {
 				
     @Override
 				public String toString(){
-								return (/*"Code: "+ this.code+
-                "\n<br/> libelle: " + this.libelle+
-                "\n<br/> adresse postale: " + this.adresse_postale+
-                "\n<br/> coordonnées: (" + this.latitude + ", " + this.longitude + ")"+
-                "\n<br/>*/" Accès TAN: "+this.getAcces_tan()+
+								return (" Accès TAN: "+this.getAcces_tan()+
 																"\n<br/> Jeux: "+this.getJeux()+
 																"\n<br/> Aire de pique-nique: "+this.getMobilier_pique_nique()+
 																"\n<br/> Pateaugeoire: "+this.getPataugeoire()+

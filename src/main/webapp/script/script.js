@@ -191,10 +191,3 @@ function afficherResultCarte(tabResLib, tabResLat, tabResLong) {
 				}
 				mapstraction.autoCenterAndZoom();
 }
-
-/*action="index" 
-	*listener="#{ResultBean.rechercheParc()}"
-	*onclick="afficherResultCarte(#{ResultBean.transformeLatString()}, #{ResultBean.transformeLongString()});" 
-	*actionListener="#{ResultBean.rechercheParc()}"
-	*onevent="function(data) { ajaxParc(data, '#{ResultBean.transformeLibString()}', '#{ResultBean.transformeLatString()}', '#{ResultBean.transformeLongString()}') }"
-	*/

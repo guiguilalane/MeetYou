@@ -34,7 +34,6 @@ public class ResultBean implements java.io.Serializable {
 				private ArrayList<AmiBean> amiSelect = new ArrayList<AmiBean>();
 				private double posRencX = 0;
 				private double posRencY = 0;
-				private int change = 0;
 
 				/**
 				 * Creates a new instance of ResultBean
@@ -124,7 +123,7 @@ public class ResultBean implements java.io.Serializable {
 								posRencY = 0;
 								Iterator<AmiBean> amiIter = amiSelect.iterator();
 								AmiBean ami;
-								// TODO: récupérer notre position ! est-ce qu'on la met obligatoirement dans le tabAmis ?
+								// TODO: Récupérer notre position 
 								// Somme des latitudes et longitudes de tous les amis sélectionnés afin de créer le point de rencontre
 								while (amiIter.hasNext()) {
 												ami = amiIter.next();
@@ -140,18 +139,7 @@ public class ResultBean implements java.io.Serializable {
 
 				public void rechercheParc() {
 
-//        ParcBeanPersist pbp = new ParcBeanPersist();
-//        ParcBean p1, p2, p3, p4;
-//        p1 = new ParcBean(34, "Parc des dervallières", "Rue louis le nain", 47.2248, -1.59412, "Vincent auriol ligne 56", "NON", "NON", "NON", "NON", "NON", "NON", "NON", "", "NON", "NON", "NON", 82110.0, "");
-//        p2 = new ParcBean(35, "Jardin d'enfants de procé", "	Rue des dervallières",	47.2222, -1.58153,	"Lignes 22 et 56 - procé",	"OUI",	"NON", "OUI",	"OUI", "OUI",	"NON", "NON", "", "OUI", "OUI", "OUI", 5800.0, "");
-//        p3 = new ParcBean(36, "Parc de proce", "Rue des dervallières, boulevard des anglais", 	47.2243,	-1.58156, "Lignes 22 et 56 - procé",	"OUI",	"NON",	"NON",	"OUI",	"OUI",	"NON",	"NON",	"Bruyères, rhododendrons, magnolias, andromèdes, lis, fuchsias, dahlias,  vivaces",	"OUI", "NON", "OUI",	113000,	"Le parc a été créé au milieu du siècle dernier, d'après les plans de d. noisette, autour d'un manoir datant de 1789.");
-//        p4 = new ParcBean(115, "Square amiral halgand", "	Place de l'hotel de ville",	47.2175,	-1.55443,	"Hôtel de ville lignes 11 12 21 22 23 c lu",	"NON",	"NON",	"NON",	"NON",	"OUI",	"NON", "NON",	"","NON",	"NON",	"OUI",	1298,	"Le square de la mairie date de la reconstruction d'après-guerre, quelques jeux et la statue du général leclerc sont les principaux ornements.");
-//								pbp.enregistrer(p1);
-//        pbp.enregistrer(p2);
-//        pbp.enregistrer(p3);
-//        pbp.enregistrer(p4);
-
-								/*					GestionFichier gf = new GestionFichier("http://data.nantes.fr/api/publication/LOC_PARCS_JARDINS_NANTES/LOC_PARCS_JARDINS_NANTES_STBL/content/?format=csv", "jardins_parcs.csv");
+													GestionFichier gf = new GestionFichier("http://data.nantes.fr/api/publication/LOC_PARCS_JARDINS_NANTES/LOC_PARCS_JARDINS_NANTES_STBL/content/?format=csv", "jardins_parcs.csv");
 								 try {
 								 gf.charger();
 								 } catch (FileNotFoundException ex) {
@@ -160,10 +148,10 @@ public class ResultBean implements java.io.Serializable {
 								 Logger.getLogger(ResultBean.class.getName()).log(Level.SEVERE, null, ex);
 								 } catch (IOException ex) {
 								 Logger.getLogger(ResultBean.class.getName()).log(Level.SEVERE, null, ex);
-								 }*/
+								 }
 
-								change ++;
 								ResultBeanPersist pp = new ResultBeanPersist();
+								this.tab.clear();
 								calculPointRencontre();
 								pp.calculResultat(this);
 
@@ -209,19 +197,5 @@ public class ResultBean implements java.io.Serializable {
 												res = res.substring(0, res.length() - 1);
 								}
 								return res;
-				}
-
-				/**
-				 * @return the change
-				 */
-				public int getChange() {
-								return change;
-				}
-
-				/**
-				 * @param change the change to set
-				 */
-				public void setChange(int change) {
-								this.change = change;
 				}
 }
