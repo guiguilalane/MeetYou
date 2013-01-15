@@ -29,21 +29,20 @@ public class TabAmiBean implements java.io.Serializable {
 								this.tab.addAll(tab);
 				}
 
-				public final String addAmi(AmiBean ami/*String nom, String prenom*/) {
+				public final void addAmi(AmiBean ami) {
 								
         if(tab.isEmpty()){
-            tab.add(new Triple(ami/*new AmiBean(nom, prenom)*/, null, null));
+            tab.add(new Triple(ami, null, null));
         } else {
             Triple<AmiBean, AmiBean, AmiBean> dernier = tab.get(tab.size() - 1);
             if (dernier.getB() == null) {
-												dernier.setB(ami/*new AmiBean(nom, prenom)*/);
+												dernier.setB(ami);
             } else if (dernier.getC() == null) {
-                dernier.setC(ami/*new AmiBean(nom, prenom)*/);
+                dernier.setC(ami);
             } else {
-                tab.add(new Triple(ami/*new AmiBean(nom, prenom)*/, null, null));
+                tab.add(new Triple(ami, null, null));
             }
         }
-								return "index";
 				}
 
 				/**
