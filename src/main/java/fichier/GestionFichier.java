@@ -10,6 +10,7 @@ import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -92,7 +93,7 @@ public final class GestionFichier {
 
             System.gc();
             String BUFFER_SIZE = "12096";
-            String tempDirectory = "";
+            String tempDirectory = ".";
             String slash = "/";
             
             if (BUFFER_SIZE != null && BUFFER_SIZE.trim().length() > 1) {
@@ -246,7 +247,13 @@ public final class GestionFichier {
 				public void parsingFile() throws MalformedURLException, IOException{
 								ParcBeanPersist pp = new ParcBeanPersist();
 								URL url = new URL(this.urlFichier);
-								Reader reader = new InputStreamReader(new FileInputStream(cheminFile), "utf-8");
+        FileInputStream f = new FileInputStream(cheminFile);
+        FileDescriptor fd = f.getFD();
+        File file = new File(cheminFile);
+        System.out.println(file.getParentFile());
+//        System.out.println(f.getFD());
+        System.out.println(cheminFile);
+								Reader reader = new InputStreamReader(f, "utf-8");
 								BufferedReader br = new BufferedReader(reader);
 								
 								String ligne = null;
