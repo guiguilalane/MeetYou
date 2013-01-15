@@ -34,6 +34,11 @@ public class AmiBean implements java.io.Serializable {
     
     @Persistent
 				private double longi;
+
+    @Override
+    public String toString() {
+        return "AmiBean{" + "token=" + token + ", nom=" + nom + ", prenom=" + prenom + ", lat=" + lat + ", longi=" + longi + '}';
+    }
     
     @Persistent
 				private Boolean notActif;

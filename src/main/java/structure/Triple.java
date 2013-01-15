@@ -22,6 +22,10 @@ public class Triple<T, U, V> implements java.io.Serializable {
 								this.c = c;
 				}
 
+    public Triple() {
+        this(null, null, null);
+    }
+
 				public T getA() {
 								return a;
 				}
