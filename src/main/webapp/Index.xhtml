@@ -47,8 +47,8 @@
     </h:head>
 				<h:body onload="geolocalisation()">
         <c:set var="myId" value="0005" scope="session"/> <!-- L'attribut "value" est récupérer lors de la connexion avec google Oauth et correspondra à d'adresse mail de l'utilisateur -->
-        <c:set var="myLat" value="47.2504122" scope="session" /> <!-- L'attribut "value" des variables "myLat" et "myLong" sont récupérés à l'aide de google latitude-->
-        <c:set var="myLong" value="-1.5350542999999999" scope="session" />
+        <c:set var="myLat" value="47.23829670000001" scope="session" /> <!-- L'attribut "value" des variables "myLat" et "myLong" sont récupérés à l'aide de google latitude-->
+        <c:set var="myLong" value="-1.5536253999999998" scope="session" />
 
         <c:set var="me" value="#{AmiBean.getAmiFromBd(myId)}" scope="session" />
         <c:set var="b" value="#{AmiBean.doubleFromString(myLat)}" />
@@ -58,7 +58,6 @@
         <c:if test="#{empty ResultBean.amiSelect}">
            <c:set var="a" value="#{ResultBean.amiSelect.add(me)}" scope="session"/>
         </c:if>
-        <h:outputText value="#{me}" />
 								<div id="bloc_page">
 												<header>
 																<img src="images/banniere.png" id="titreIwishtoomeetyou"/>
@@ -74,6 +73,7 @@
 																<legend> Mes ami(e)s </legend>
 																<f:view> 
 																				<h:form id="en">
+                        <!--Boite de dialogue pour ajouter des amis-->
 																								<!--		<div id="dialog-form" title="Ajouter un ami(e)">
 																														<p class="validateTips">All form fields are required.</p>
 																														<form>
@@ -84,11 +84,8 @@
 																														</form>
 																										</div>
 																										<button id="create-user">Ajouter un ami(e)</button>-->
-																								<!--	<h:commandButton value="Ajouter un ami(e)" action="index" /> -->
-
-
+                        <!--Liste des amis que l'utilisateur possède-->
 																								<div id="tableAmi">
-
 																												<h:form>
 																																<h:dataTable value="#{TabAmiBean.tab}" var="triple">
 																																				<h:column>
@@ -96,7 +93,7 @@
 																																												<fieldset>
 																																																<legend>
 																																																				<h:selectBooleanCheckbox label="#{triple.a.id}" disabled="#{triple.a.notActif}" value="#{triple.a.isSelected}">
-																																																								<f:ajax event="click" listener="#{ResultBean.gestionAmi(triple.a)}" render="@form :essai" onevent="function(data) { ajaxAmi(data, '#{triple.a.nom}', '#{triple.a.prenom}', #{triple.a.lat}, #{triple.a.longi}, #{triple.a.isSelected}) }"/>
+																																																								<f:ajax event="click" listener="#{ResultBean.gestionAmi(triple.a)}" render="@form" onevent="function(data) { ajaxAmi(data, '#{triple.a.nom}', '#{triple.a.prenom}', #{triple.a.lat}, #{triple.a.longi}, #{triple.a.isSelected}) }"/>
                                                     </h:selectBooleanCheckbox>
 																																																				<h:outputText value="#{triple.a.nom} #{triple.a.prenom}" />
 																																																</legend>
@@ -108,7 +105,7 @@
 																																												<fieldset>
 																																																<legend>
 																																																				<h:selectBooleanCheckbox label="#{triple.b.id}" disabled="#{triple.b.notActif}" value="#{triple.b.isSelected}">
-																																																								<f:ajax event="click" listener="#{ResultBean.gestionAmi(triple.b)}" render="@form :essai" onevent="function(data) { ajaxAmi(data, '#{triple.b.nom}', '#{triple.b.prenom}', #{triple.b.lat}, #{triple.b.longi}, #{triple.b.isSelected}) }"/>
+																																																								<f:ajax event="click" listener="#{ResultBean.gestionAmi(triple.b)}" render="@form" onevent="function(data) { ajaxAmi(data, '#{triple.b.nom}', '#{triple.b.prenom}', #{triple.b.lat}, #{triple.b.longi}, #{triple.b.isSelected}) }"/>
 																																																				</h:selectBooleanCheckbox>
 																																																				<h:outputText value="#{triple.b.nom} #{triple.b.prenom}" />
 																																																</legend>
@@ -120,7 +117,7 @@
 																																												<fieldset>
 																																																<legend>
 																																																				<h:selectBooleanCheckbox label="#{triple.c.id}" disabled="#{triple.c.notActif}" value="#{triple.c.isSelected}">
-																																																								<f:ajax event="click" listener="#{ResultBean.gestionAmi(triple.c)}" render="@form :essai" onevent="function(data) { ajaxAmi(data, '#{triple.c.nom}', '#{triple.c.prenom}', #{triple.c.lat}, #{triple.c.longi}, #{triple.c.isSelected}) }"/>
+																																																								<f:ajax event="click" listener="#{ResultBean.gestionAmi(triple.c)}" render="@form" onevent="function(data) { ajaxAmi(data, '#{triple.c.nom}', '#{triple.c.prenom}', #{triple.c.lat}, #{triple.c.longi}, #{triple.c.isSelected}) }"/>
 																																																				</h:selectBooleanCheckbox>
 																																																				<h:outputText value="#{triple.c.nom} #{triple.c.prenom}" />
 																																																</legend>
@@ -134,7 +131,7 @@
 																</f:view>
 												</fieldset>
 
-												<!-- Bouton Rechercher -->
+												<!-- Bouton Rechercher : recherche les 5 parcs les plus proches-->
 												<div id="Recherche">
 																<h:form>
 																				<h:commandButton id="RechercherBouton" value="Rechercher">
@@ -166,7 +163,7 @@
 												</h:form>
 								</div>
 
-								<!-- Boites de dialogues -->
+								<!-- Boites de dialogues qui affiche les informations sur les 5 parcs les plus proches -->
 								<h:form id="dialogue">
 												<h:dataTable value="#{ResultBean.getKeyAsList()}" var="numberParc" >
 																<h:column>
@@ -176,17 +173,6 @@
 																												<h:outputText value="#{ResultBean.tab.get(numberParc).toString()}" escape="false"/>
 																								</fieldset>
 																				</div>
-																</h:column>
-												</h:dataTable>
-								</h:form>
-
-								<!-- Affichage des ami(e)s cochées -->
-								<h:form id="essai">
-												<h:outputText value="#{ResultBean.posRencX} - "/>
-												<h:outputText value="#{ResultBean.posRencY}"/>
-												<h:dataTable id="essaiAmi" value="#{ResultBean.amiSelect}" var="amisel" >
-																<h:column>
-																				<h:outputText value="#{amisel.nom} #{amisel.prenom}"/>
 																</h:column>
 												</h:dataTable>
 								</h:form>

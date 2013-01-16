@@ -4,8 +4,6 @@
  */
 package structure;
 
-import bean.AmiBean;
-
 /**
  *
  * @author Nomyx

@@ -67,6 +67,11 @@ public class AmiBean implements java.io.Serializable {
 								}
 				}
     
+    /**
+     * Retourne le bean de l'ami identifier par son identifiant
+     * @param id l'identifiant du bean de l'ami
+     * @return le bean de l'ami
+     */
     public static AmiBean getAmiFromBd(String id){
         return new AmiBeanPersist().getAmiBean(id);
     }
@@ -101,6 +106,9 @@ public class AmiBean implements java.io.Serializable {
 								this.lat = lat;
 				}
     
+    /*
+     * A supprimer quand on récupèrera la position à partir de google Latitude
+     */
     public static double doubleFromString(String s) {
         return Double.valueOf(s);
 				}

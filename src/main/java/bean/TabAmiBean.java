@@ -5,11 +5,10 @@
 package bean;
 
 import java.util.ArrayList;
-import java.util.Vector;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import structure.Triple;
 import persistance.*;
+import structure.Triple;
 
 /**
  *
@@ -54,6 +53,8 @@ public class TabAmiBean implements java.io.Serializable {
         for(AmiBean a : friends){
             addAmi(a);
         }
+        
+//        Utilisé lors de la première utilisation
 //        AmiBean Bs, Gc, Dm, Ff, Cg;
 //        Bs = new AmiBean("0001", "BULLIER", "Sidonie", 47.27756368, -1.634448546);
 //        Gc = new AmiBean("0002", "GREGOIRE", "Clémence", 47.27520911, -1.634768614);

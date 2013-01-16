@@ -5,7 +5,6 @@
 package persistance;
 
 import PMF.PMF;
-import bean.AmiBean;
 import bean.ParcBean;
 import bean.ResultBean;
 import java.util.Iterator;

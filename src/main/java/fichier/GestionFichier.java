@@ -6,7 +6,6 @@ package fichier;
 
 import bean.ParcBean;
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -18,15 +17,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.Reader;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.Calendar;
 import java.util.regex.Pattern;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 import persistance.ParcBeanPersist;
 import sun.net.www.protocol.http.HttpURLConnection;
 
@@ -250,9 +245,6 @@ public final class GestionFichier {
         FileInputStream f = new FileInputStream(cheminFile);
         FileDescriptor fd = f.getFD();
         File file = new File(cheminFile);
-        System.out.println(file.getParentFile());
-//        System.out.println(f.getFD());
-        System.out.println(cheminFile);
 								Reader reader = new InputStreamReader(f, "utf-8");
 								BufferedReader br = new BufferedReader(reader);
 								
@@ -261,8 +253,6 @@ public final class GestionFichier {
 								
 								
 								Pattern p = Pattern.compile(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
-								//requetes.executerRequete(requeteSuppr);
-								//requetes.executerRequete(requeteCreation);
 								int numLigne = 1;
         if((ligne = br.readLine()) != null) {
             taille = ligne.split(",").length+1;
@@ -315,12 +305,6 @@ public final class GestionFichier {
 				
 				public void charger() throws FileNotFoundException, MalformedURLException, IOException{
 								this.getFile();
-//								this.unzip();
 								this.parsingFile();
-				}
-				
-				public void main() throws FileNotFoundException, MalformedURLException, IOException{
-//								GestionFichier gf = new GestionFichier("http://data.nantes.fr/fileadmin/data/datastore/3-publication/environnement/jardins_parcs/jardins_parcs_csv.zip","jardins_parcs_csv.zip","");
-//								gf.charger();
 				}
 }

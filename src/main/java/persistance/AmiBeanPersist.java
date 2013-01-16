@@ -85,13 +85,10 @@ public class AmiBeanPersist {
             query.setFilter("me == myIdentifier");
             query.declareParameters("String myIdentifier");
             
-            //TODO: changer la valeur du parametre de 'execute' par la valeur de la personne connecté.
             List<BrotherhoodBean> brotherhood = (List<BrotherhoodBean>) query.execute(me);
             if(!brotherhood.isEmpty()){
-//                System.out.println("My friends :");
                 List<String> friendId = new ArrayList<String>();
                 for(BrotherhoodBean b : brotherhood){
-//                    System.out.println("\t- " + b.getFriend());
                     friendId.add(b.getFriend());
                 }
                 query = pm.newQuery(AmiBean.class,
@@ -101,7 +98,6 @@ public class AmiBeanPersist {
                 {
                     for(AmiBean a : tmp){
                         friends.add(a);
-//                        System.out.println(a);
                     }
                 }
             }
