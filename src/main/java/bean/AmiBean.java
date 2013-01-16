@@ -9,6 +9,7 @@ import javax.faces.bean.SessionScoped;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
+import persistance.AmiBeanPersist;
 
 /**
  *
@@ -65,6 +66,10 @@ public class AmiBean implements java.io.Serializable {
 												this.notActif = false;
 								}
 				}
+    
+    public static AmiBean getAmiFromBd(String id){
+        return new AmiBeanPersist().getAmiBean(id);
+    }
 
 				public String getNom() {
 								return nom;
@@ -94,6 +99,10 @@ public class AmiBean implements java.io.Serializable {
 				 */
 				public void setLat(double lat) {
 								this.lat = lat;
+				}
+    
+    public static double doubleFromString(String s) {
+        return Double.valueOf(s);
 				}
 
 				/**

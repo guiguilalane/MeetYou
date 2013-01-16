@@ -3,8 +3,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
 						xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:t="http://myfaces.apache.org/tomahawk"
-      xmlns:a4j="http://richfaces.org/a4j"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
     <h:head>
 								<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -48,6 +46,20 @@
 								<title>I wish to meet you</title>
     </h:head>
 				<h:body onload="geolocalisation()">
+        <c:set var="myId" value="0005" scope="session"/> <!-- L'attribut "value" est récupérer lors de la connexion avec google Oauth et correspondra à d'adresse mail de l'utilisateur -->
+        <c:set var="myLat" value="47.2504122" scope="session" /> <!-- L'attribut "value" des variables "myLat" et "myLong" sont récupérés à l'aide de google latitude-->
+        <c:set var="myLong" value="-1.5350542999999999" scope="session" />
+
+        <c:set var="me" value="#{AmiBean.getAmiFromBd(myId)}" scope="session" />
+        <c:set var="b" value="#{AmiBean.doubleFromString(myLat)}" />
+        <c:set var="c" value="#{AmiBean.doubleFromString(myLong)}" />
+        <c:set target="#{me}" property="lat" value="${b}" scope="session"/>
+        <c:set target="#{me}" property="longi" value="${c}" scope="session"/>
+        <c:if test="#{empty ResultBean.amiSelect}">
+            <h:outputText value="vide"/>
+            <c:set var="a" value="#{ResultBean.amiSelect.add(me)}" scope="session"/>
+        </c:if>
+        <h:outputText value="#{me}" />
 								<div id="bloc_page">
 												<header>
 																<img src="images/banniere.png" id="titreIwishtoomeetyou"/>

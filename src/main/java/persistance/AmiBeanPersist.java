@@ -48,6 +48,33 @@ public class AmiBeanPersist {
         }
     }
     
+    public AmiBean getAmiBean(String myId){
+        pm = pmf.getPersistenceManager();
+        tx = pm.currentTransaction();
+        tx.begin();
+        Query query = pm.newQuery(AmiBean.class);
+        AmiBean me = new AmiBean();
+        try{
+            query.setFilter("token == myIdentifier");
+            query.declareParameters("String myIdentifier");
+            List<AmiBean> lami = (List<AmiBean>) query.execute(myId);
+            if(!lami.isEmpty()){
+                me = lami.get(0);
+            }
+            tx.commit();
+        } catch (Exception e) {
+												System.out.println(e);
+								} finally {
+												if (tx.isActive()) {
+																tx.rollback();
+												}
+            query.closeAll();
+												pm.close();
+            return me;
+								}
+        
+    }
+    
     public ArrayList<AmiBean> getFriends(String me){
         pm = pmf.getPersistenceManager();
         tx = pm.currentTransaction();
@@ -55,9 +82,6 @@ public class AmiBeanPersist {
         Query query = pm.newQuery(BrotherhoodBean.class);
         ArrayList<AmiBean> friends = new ArrayList<AmiBean>();
         try {
-												pm = pmf.getPersistenceManager();
-												tx = pm.currentTransaction();
-												tx.begin();
             query.setFilter("me == myIdentifier");
             query.declareParameters("String myIdentifier");
             
@@ -77,7 +101,7 @@ public class AmiBeanPersist {
                 {
                     for(AmiBean a : tmp){
                         friends.add(a);
-                        System.out.println(a);
+//                        System.out.println(a);
                     }
                 }
             }
@@ -94,5 +118,4 @@ public class AmiBeanPersist {
             return friends;
 								}
     }
-    
 }
