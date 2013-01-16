@@ -56,8 +56,7 @@
         <c:set target="#{me}" property="lat" value="${b}" scope="session"/>
         <c:set target="#{me}" property="longi" value="${c}" scope="session"/>
         <c:if test="#{empty ResultBean.amiSelect}">
-            <h:outputText value="vide"/>
-            <c:set var="a" value="#{ResultBean.amiSelect.add(me)}" scope="session"/>
+           <c:set var="a" value="#{ResultBean.amiSelect.add(me)}" scope="session"/>
         </c:if>
         <h:outputText value="#{me}" />
 								<div id="bloc_page">
